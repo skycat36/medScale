@@ -135,7 +135,7 @@ public class DoseController {
 //                double resDose = Double.parseDouble(rate_field) * Integer.parseInt(sel_rate_dose) * 1000;
 //                model.addAttribute("resultWeight", resWeight);
 //                model.addAttribute("resultDose", resDose);
-                
+
             }
         }
 
