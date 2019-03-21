@@ -91,7 +91,7 @@ public class DoseController {
                         Double.parseDouble(sel_dose_weight) / Double.parseDouble(sel_dose_time),
                         weight, Double.parseDouble(field_concentr_weight) / Double.parseDouble(dose_concentr_field),
                         Double.parseDouble(sel_concentr_weight) / Double.parseDouble(sel_concentr_dose));
-                model.addAttribute("result", new BigDecimal(result / Double.parseDouble(sel_rate_dose)).setScale(1, RoundingMode.UP).doubleValue());
+                model.addAttribute("result", new BigDecimal(result / Double.parseDouble(sel_rate_dose)).setScale(1, RoundingMode.HALF_EVEN).doubleValue());
             }
         }
 
@@ -117,7 +117,7 @@ public class DoseController {
                         Integer.parseInt(sel_rate_dose),
                         weight, Double.parseDouble(field_concentr_weight) / Double.parseDouble(dose_concentr_field),
                         Double.parseDouble(sel_concentr_weight) / Double.parseDouble(sel_concentr_dose));
-                model.addAttribute("result", new BigDecimal(result / Double.parseDouble(sel_dose_weight)).setScale(1, RoundingMode.UP).doubleValue());
+                model.addAttribute("result", new BigDecimal(result / Double.parseDouble(sel_dose_weight) / Double.parseDouble(sel_dose_time)).setScale(1, RoundingMode.HALF_EVEN).doubleValue());
             }
         }
         if (infution.equals("concentr")){

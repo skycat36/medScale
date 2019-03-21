@@ -84,10 +84,10 @@
                                value="<#if rate_field??>${rate_field}</#if>"
                                type="number" min="0.00000001" step="any">
                         <select class="custom-select col-sm-3" name="sel_rate_dose" id="inputGroupSelect01">
-                            <option <#if sel_rate_dose??><#if (sel_rate_dose=="1")>selected</#if></#if>
-                                    value="1">мл/мин</option>
                             <option <#if sel_rate_dose??><#if (sel_rate_dose=="60")>selected</#if></#if>
-                                    value="60">мл/час</option>
+                                    value="60">мл/мин</option>
+                            <option <#if sel_rate_dose??><#if (sel_rate_dose=="1")>selected</#if></#if>
+                                    value="1">мл/час</option>
                             <option <#if sel_rate_dose??><#if (sel_rate_dose=="1440")>selected</#if></#if>
                                     value="1440">мл/день</option>
                         </select>
@@ -114,10 +114,10 @@
                                type="number" min="0.00000001" step="any">
 
                         <select class="custom-select col-sm-4" name="sel_concentr_weight" id="inputGroupSelect01">
-                            <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="1")>selected</#if></#if>
+                            <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="0.001")>selected</#if></#if>
                                     value="0.001">микрограммы</option>
-                            <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="1000")>selected</#if></#if>
-                                    value="1000">миллиграммы</option>
+                            <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="1")>selected</#if></#if>
+                                    value="1">миллиграммы</option>
                             <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="1000000")>selected</#if></#if>
                                     value="1000000">граммы</option>
                         </select>
@@ -184,10 +184,10 @@
                         <select class="custom-select col-sm-3 ml-2" name="sel_dose_time" id="inputGroupSelect01">
                             <option <#if sel_dose_time??><#if (sel_dose_time=="1")>selected</#if></#if>
                                     value="1">минуты</option>
-                            <option <#if sel_dose_time??><#if (sel_dose_time=="60")>selected</#if></#if>
-                                    value="60">часы</option>
-                            <option <#if sel_dose_time??><#if (sel_dose_time=="1440")>selected</#if></#if>
-                                    value="1440">дни</option>
+                            <option <#if sel_dose_time??><#if (sel_dose_time=="0.0166666666666667")>selected</#if></#if>
+                                    value="0.0166666666666667">часы</option>
+                            <option <#if sel_dose_time??><#if (sel_dose_time=="0.00069444444")>selected</#if></#if>
+                                    value="0.00069444444">дни</option>
                         </select>
                     </div>
                 </#if>
@@ -198,10 +198,10 @@
                             <label class="col-form-label">${resultWeight}</label>
                         </#if>
                         <select class="custom-select col-sm-4" name="sel_concentr_weight" id="inputGroupSelect01">
+                            <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="0.00001")>selected</#if></#if>
+                                    value="0.00001">микрограммы</option>
                             <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="0.001")>selected</#if></#if>
-                                    value="0.001">микрограммы</option>
-                            <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="1")>selected</#if></#if>
-                                    value="1">миллиграммы</option>
+                                    value="0.001">миллиграммы</option>
                             <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="1000000")>selected</#if></#if>
                                     value="1000000">граммы</option>
                         </select>
