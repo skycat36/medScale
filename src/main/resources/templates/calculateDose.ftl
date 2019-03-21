@@ -17,6 +17,16 @@
             }
         }
     }
+
+    <#--function changeRate(valueSel) {-->
+        <#--if (document.getElementById("resChangeRate")) {-->
+            <#--let res = ${result};-->
+            <#--let resDose = ${sel_rate_dose};-->
+            <#--res = res * resDose / Number(valueSel);-->
+            <#--document.getElementById("resChangeRate").innerHTML = res;-->
+        <#--}-->
+    <#--}-->
+
 </script>
 
 <form method="post" action="/dose">
@@ -151,9 +161,9 @@
                     <div class="form-group row mt-3 mb-0">
                         <label class="col-form-label mr-2">Скорость вливания:</label>
                         <#if result??>
-                            <label class="col-form-label mr-2 ml-2">${result}</label>
+                            <label class="col-form-label mr-2 ml-2" id="resChangeRate">${result}</label>
                         </#if>
-                        <select class="custom-select col-sm-3" name="sel_rate_dose" id="inputGroupSelect01">
+                        <select class="custom-select col-sm-3" name="sel_rate_dose" id="resSelRateDose" onchange="changeRate(this.value)">
                             <option <#if sel_rate_dose??><#if (sel_rate_dose=="60")>selected</#if></#if>
                                     value="60">мл/мин</option>
                             <option <#if sel_rate_dose??><#if (sel_rate_dose=="1")>selected</#if></#if>
@@ -195,7 +205,7 @@
                 <#if (infution == "concentr")>
                     <div class="form-group row mt-3 mb-0 offset-md-2">
                         <#if resultWeight??>
-                            <label class="col-form-label">${resultWeight}</label>
+                            <label class="col-form-label mr-2">${resultWeight}</label>
                         </#if>
                         <select class="custom-select col-sm-4" name="sel_concentr_weight" id="inputGroupSelect01">
                             <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="0.00001")>selected</#if></#if>
@@ -214,7 +224,7 @@
 
                     <div class="form-group row mt-0 mb-0 offset-md-2">
                         <#if resultDose??>
-                            <label class="col-form-label">${resultDose}</label>
+                            <label class="col-form-label mr-2">${resultDose}</label>
                         </#if>
                         <select class="custom-select col-sm-3" name="sel_concentr_dose" id="inputGroupSelect01">
                             <option <#if sel_concentr_dose??><#if (sel_concentr_dose=="1")>selected</#if></#if>

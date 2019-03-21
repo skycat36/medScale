@@ -1,0 +1,6 @@
+*.jar
+*.war
+/target/*
+/node_modules/*
+/.idea/*
+hospit.iml

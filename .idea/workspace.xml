@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5eecd7ea-2565-471a-b7a7-930f5dab82ed" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/takeHospital/controller/DoseController.class" afterPath="$PROJECT_DIR$/target/classes/com/takeHospital/controller/DoseController.class" />
+    <list default="true" id="5eecd7ea-2565-471a-b7a7-930f5dab82ed" name="Default" comment="Calculate concentration complited">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/takeHospital/controller/DoseController.java" afterPath="$PROJECT_DIR$/src/main/java/com/takeHospital/controller/DoseController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/calculateDose.ftl" afterPath="$PROJECT_DIR$/src/main/resources/templates/calculateDose.ftl" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/templates/calculateDose.ftl" afterPath="$PROJECT_DIR$/target/classes/templates/calculateDose.ftl" />
     </list>
@@ -24,17 +23,27 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="calculateDose.ftl" pinned="false" current-in-tab="true">
+      <file leaf-file-name="calculateDose.ftl" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/templates/calculateDose.ftl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="203" column="50" lean-forward="true" selection-start-line="203" selection-start-column="50" selection-end-line="203" selection-end-column="50" />
+            <state relative-caret-position="204">
+              <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
               <folding>
-                <element signature="e#3214#3236#0#HTML" expanded="true" />
-                <element signature="e#5394#5410#0#HTML" expanded="true" />
-                <element signature="e#5627#5649#0#HTML" expanded="true" />
-                <element signature="e#10857#10879#0#HTML" expanded="true" />
+                <element signature="e#3579#3601#0#HTML" expanded="true" />
+                <element signature="e#5759#5775#0#HTML" expanded="true" />
+                <element signature="e#5992#6014#0#HTML" expanded="true" />
+                <element signature="e#11271#11293#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="5" column="10" lean-forward="true" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -42,8 +51,8 @@
       <file leaf-file-name="DoseController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/takeHospital/controller/DoseController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="145" column="126" lean-forward="false" selection-start-line="145" selection-start-column="126" selection-end-line="145" selection-end-column="126" />
+            <state relative-caret-position="476">
+              <caret line="93" column="85" lean-forward="false" selection-start-line="93" selection-start-column="85" selection-end-line="93" selection-end-column="85" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -55,7 +64,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/takeHospital/controller/ChartController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="51">
-              <caret line="28" column="6" lean-forward="true" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+              <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
               <folding />
             </state>
           </provider>
@@ -238,97 +247,6 @@
               <item name="hospit" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="takeHospital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="takeHospital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="takeHospital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="takeHospital" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="takeHospital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="takeHospital" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="takeHospital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="takeHospital" type="462c0819:PsiDirectoryNode" />
-              <item name="domain" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="takeHospital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="takeHospital" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="takeHospital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="takeHospital" type="462c0819:PsiDirectoryNode" />
-              <item name="service" type="462c0819:PsiDirectoryNode" />
-              <item name="metodsScale" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="takeHospital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="takeHospital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="takeHospital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="parts" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="takeHospital" type="b2602c69:ProjectViewProjectNode" />
-              <item name="hospit" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="scheme" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -350,27 +268,27 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth2" value="75" />
     <property name="RequestMappingsPanelOrder2" value="2" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.tools" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\vegas\diplom\hospit\src\main\resources\static\lib" />
-      <recent name="D:\vegas\diplom\hospit\src\main\resources" />
-      <recent name="D:\vegas\diplom\hospit\src\main\resources\db\migration" />
-      <recent name="D:\vegas\diplom\hospit\src\main\resources\static" />
-      <recent name="D:\vegas\diplom\hospit\src\main\resources\images" />
-    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\vegas\diplom\hospit\src\main\resources\lib" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\vegas\diplom\hospit" />
+      <recent name="D:\vegas\diplom\hospit\src" />
+      <recent name="D:\vegas\diplom\hospit\src\main\resources\static\lib" />
+      <recent name="D:\vegas\diplom\hospit\src\main\resources" />
+      <recent name="D:\vegas\diplom\hospit\src\main\resources\db\migration" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -555,7 +473,7 @@
       <workItem from="1552926477258" duration="4033000" />
       <workItem from="1553016783758" duration="4221000" />
       <workItem from="1553098746694" duration="11462000" />
-      <workItem from="1553150897800" duration="26493000" />
+      <workItem from="1553150897800" duration="31922000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1553158638179</created>
@@ -592,11 +510,18 @@
       <option name="project" value="LOCAL" />
       <updated>1553186861111</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Calculate concentration complited">
+      <created>1553191882434</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1553191882434</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="522908000" />
+    <option name="totallyTimeSpent" value="528337000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -628,11 +553,12 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22006473" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39930555" sideWeight="0.49029127" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39930555" sideWeight="0.49029127" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -640,7 +566,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32928804" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3298611" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -678,6 +603,16 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -711,7 +646,8 @@
     <MESSAGE value="First commit" />
     <MESSAGE value="Calculate InfushionRate complited" />
     <MESSAGE value="Calculate dose complited" />
-    <option name="LAST_COMMIT_MESSAGE" value="Calculate dose complited" />
+    <MESSAGE value="Calculate concentration complited" />
+    <option name="LAST_COMMIT_MESSAGE" value="Calculate concentration complited" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -723,7 +659,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/js/drowCountClientInOPN.js" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/example.html" />
     <entry file="file://$PROJECT_DIR$/src/main/resources/db/migration/V3__Add_parametrsScheme.sql">
       <provider selected="true" editor-type-id="text-editor">
@@ -1115,15 +1050,15 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/takeHospital/controller/ChartController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
-          <caret line="28" column="6" lean-forward="true" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
+          <caret line="28" column="6" lean-forward="false" selection-start-line="28" selection-start-column="6" selection-end-line="28" selection-end-column="6" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/takeHospital/controller/DoseController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="145" column="126" lean-forward="false" selection-start-line="145" selection-start-column="126" selection-end-line="145" selection-end-column="126" />
+        <state relative-caret-position="476">
+          <caret line="93" column="85" lean-forward="false" selection-start-line="93" selection-start-column="85" selection-end-line="93" selection-end-column="85" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1132,14 +1067,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/templates/calculateDose.ftl">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="203" column="50" lean-forward="true" selection-start-line="203" selection-start-column="50" selection-end-line="203" selection-end-column="50" />
+        <state relative-caret-position="204">
+          <caret line="27" column="12" lean-forward="false" selection-start-line="27" selection-start-column="12" selection-end-line="27" selection-end-column="12" />
           <folding>
-            <element signature="e#3214#3236#0#HTML" expanded="true" />
-            <element signature="e#5394#5410#0#HTML" expanded="true" />
-            <element signature="e#5627#5649#0#HTML" expanded="true" />
-            <element signature="e#10857#10879#0#HTML" expanded="true" />
+            <element signature="e#3579#3601#0#HTML" expanded="true" />
+            <element signature="e#5759#5775#0#HTML" expanded="true" />
+            <element signature="e#5992#6014#0#HTML" expanded="true" />
+            <element signature="e#11271#11293#0#HTML" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="10" lean-forward="true" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
