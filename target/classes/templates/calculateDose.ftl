@@ -200,10 +200,10 @@
                         <select class="custom-select col-sm-4" name="sel_concentr_weight" id="inputGroupSelect01">
                             <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="0.00001")>selected</#if></#if>
                                     value="0.00001">микрограммы</option>
-                            <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="0.001")>selected</#if></#if>
-                                    value="0.001">миллиграммы</option>
-                            <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="1000000")>selected</#if></#if>
-                                    value="1000000">граммы</option>
+                            <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="0.01")>selected</#if></#if>
+                                    value="0.01">миллиграммы</option>
+                            <option <#if sel_concentr_weight??><#if (sel_concentr_weight=="10")>selected</#if></#if>
+                                    value="10">граммы</option>
                         </select>
                     </div>
 

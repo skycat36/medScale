@@ -143,7 +143,7 @@ public class DoseController {
                 double result = concentration(Double.parseDouble(dose_field),
                         Integer.parseInt(sel_dose_weight) / Integer.parseInt(sel_dose_time),
                         weight, Double.parseDouble(rate_field), Integer.parseInt(sel_rate_dose) );
-                model.addAttribute("resultWeight", new BigDecimal(result / Double.parseDouble(sel_concentr_weight)).setScale(1, RoundingMode.UP).doubleValue());
+                model.addAttribute("resultWeight", new BigDecimal(result / Double.parseDouble(sel_concentr_weight)).setScale(2, RoundingMode.UP).doubleValue());
                 model.addAttribute("resultDose", "100");
             }
         }
@@ -167,7 +167,7 @@ public class DoseController {
     }
 
     private double concentration(double dose, double dose_par, double weight, double rate, double rate_par){
-        return (dose * weight * 60) / (rate * rate_par * dose_par * 1000);
+        return (dose * dose_par * weight * 60) / (rate * rate_par * 1000);
     }
 
 }
