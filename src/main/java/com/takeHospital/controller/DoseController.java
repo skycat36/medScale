@@ -42,17 +42,17 @@ public class DoseController {
 
     @PostMapping
     public String calculateDose(
-            @RequestParam(required = false) String infution,
-            @RequestParam(required = false) String dose_field,
-            @RequestParam(required = false) String sel_dose_weight,
-            @RequestParam(required = false) String sel_dose_time,
-            @RequestParam(required = false) String rate_field,
-            @RequestParam(required = false) String sel_rate_dose,
-            @RequestParam(required = false) String weight_field,
-            @RequestParam(required = false) String field_concentr_weight,
-            @RequestParam(required = false) String sel_concentr_weight,
-            @RequestParam(required = false) String dose_concentr_field,
-            @RequestParam(required = false) String sel_concentr_dose,
+            @RequestParam(required = false, defaultValue = "") String infution,
+            @RequestParam(required = false, defaultValue = "") String dose_field,
+            @RequestParam(required = false, defaultValue = "") String sel_dose_weight,
+            @RequestParam(required = false, defaultValue = "") String sel_dose_time,
+            @RequestParam(required = false, defaultValue = "") String rate_field,
+            @RequestParam(required = false, defaultValue = "") String sel_rate_dose,
+            @RequestParam(required = false, defaultValue = "") String weight_field,
+            @RequestParam(required = false, defaultValue = "") String field_concentr_weight,
+            @RequestParam(required = false, defaultValue = "") String sel_concentr_weight,
+            @RequestParam(required = false, defaultValue = "") String dose_concentr_field,
+            @RequestParam(required = false, defaultValue = "") String sel_concentr_dose,
             Model model
     ){
         double weight = 1;
@@ -63,6 +63,11 @@ public class DoseController {
         }
 
         model.addAttribute("infution", infution);
+        model.addAttribute("sel_dose_weight", sel_dose_weight);
+        model.addAttribute("sel_dose_time", sel_dose_time);
+        model.addAttribute("sel_rate_dose", sel_rate_dose);
+        model.addAttribute("sel_concentr_weight", sel_concentr_weight);
+        model.addAttribute("sel_concentr_dose", sel_concentr_dose);
 
         if (infution.equals("rate")){
             if (dose_field.equals("")){
@@ -83,10 +88,10 @@ public class DoseController {
 
             if (mapError.isEmpty()){
                 double result = rate(Double.parseDouble(dose_field),
-                        Integer.parseInt(sel_dose_weight) / Integer.parseInt(sel_dose_time),
+                        Double.parseDouble(sel_dose_weight) / Double.parseDouble(sel_dose_time),
                         weight, Double.parseDouble(field_concentr_weight) / Double.parseDouble(dose_concentr_field),
                         Double.parseDouble(sel_concentr_weight) / Double.parseDouble(sel_concentr_dose));
-                model.addAttribute("result", new BigDecimal(result).setScale(1, RoundingMode.UP).doubleValue());
+                model.addAttribute("result", new BigDecimal(result / Double.parseDouble(sel_rate_dose)).setScale(1, RoundingMode.UP).doubleValue());
             }
         }
 
@@ -110,9 +115,9 @@ public class DoseController {
             if (mapError.isEmpty()){
                 double result = dose(Double.parseDouble(rate_field),
                         Integer.parseInt(sel_rate_dose),
-                        weight, Double.parseDouble(field_concentr_weight),
+                        weight, Double.parseDouble(field_concentr_weight) / Double.parseDouble(dose_concentr_field),
                         Double.parseDouble(sel_concentr_weight) / Double.parseDouble(sel_concentr_dose));
-                model.addAttribute("result", result);
+                model.addAttribute("result", new BigDecimal(result / Double.parseDouble(sel_dose_weight)).setScale(1, RoundingMode.UP).doubleValue());
             }
         }
         if (infution.equals("concentr")){
@@ -135,7 +140,11 @@ public class DoseController {
 //                double resDose = Double.parseDouble(rate_field) * Integer.parseInt(sel_rate_dose) * 1000;
 //                model.addAttribute("resultWeight", resWeight);
 //                model.addAttribute("resultDose", resDose);
-
+                double result = concentration(Double.parseDouble(dose_field),
+                        Integer.parseInt(sel_dose_weight) / Integer.parseInt(sel_dose_time),
+                        weight, Double.parseDouble(rate_field), Integer.parseInt(sel_rate_dose) );
+                model.addAttribute("resultWeight", new BigDecimal(result / Double.parseDouble(sel_concentr_weight)).setScale(1, RoundingMode.UP).doubleValue());
+                model.addAttribute("resultDose", "100");
             }
         }
 
@@ -158,7 +167,7 @@ public class DoseController {
     }
 
     private double concentration(double dose, double dose_par, double weight, double rate, double rate_par){
-        return (dose * dose_par * weight * 60) / (rate * rate_par * 1000);
+        return (dose * weight * 60) / (rate * rate_par * dose_par * 1000);
     }
 
 }
