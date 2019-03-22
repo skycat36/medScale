@@ -11,10 +11,10 @@
         <ul class="navbar-nav mr-auto">
         <#if user??>
             <li class="nav-item">
-                <a class="nav-link" href="/client_list">База клиентов</a>
+                <a class="nav-link" href="/client_list">База пациентов</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/worker_list">База работников</a>
+                <a class="nav-link" href="/worker_list">База сотрудников</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/chart_stat">Статистические данные</a>

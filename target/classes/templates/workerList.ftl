@@ -3,7 +3,7 @@
 
 <@c.page>
         <div class="text-center">
-            <h1 class="mb-3">База данных работников</h1>
+            <h1 class="mb-3">База данных сотрудников</h1>
         </div>
     <@aw.actionWith "/worker_list" false/>
 </@c.page>

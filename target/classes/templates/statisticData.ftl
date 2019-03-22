@@ -154,10 +154,14 @@
                     <label class="input-group-text" for="inputGroupSelect01">Выбор графика</label>
                 </div>
                 <select class="custom-select" name="selectedField" id="inputGroupSelect01">
-                    <option value="colClientInOPN">Количество пациентов в отделении</option>
-                    <option  value="letalInOPN">%, смертности по отделениям</option>
-                    <option value="timeClientInOPN">Средняя длительность прибывание пациента на койке</option>
-                    <option value="letalInYear">Смертность по годам</option>
+                    <option <#if selChart??><#if (selChart=="colClientInOPN")>selected</#if></#if>
+                            value="colClientInOPN">Количество пациентов в отделении</option>
+                    <option <#if selChart??><#if (selChart=="letalInOPN")>selected</#if></#if>
+                            value="letalInOPN">%, смертности по отделениям</option>
+                    <option <#if selChart??><#if (selChart=="timeClientInOPN")>selected</#if></#if>
+                            value="timeClientInOPN">Средняя длительность прибывание пациента на койке</option>
+                    <option <#if selChart??><#if (selChart=="letalInYear")>selected</#if></#if>
+                            value="letalInYear">Смертность по годам</option>
                 </select>
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <div class="col-sm-1"><button type="submit" class="btn btn-primary ml-0">Выбрать</button></div>

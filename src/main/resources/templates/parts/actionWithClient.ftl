@@ -131,10 +131,10 @@
         <div class="container">
             <div class="row justify-content-around">
                 <div class="col-4">
-                    <label class="col-form-label">Выбрать схему</label>
+                    <label class="col-form-label">Выбрать шкалу</label>
                 </div>
                 <div class="col-4">
-                    <label class="col-form-label">Удалить схему</label>
+                    <label class="col-form-label">Удалить шкалу</label>
                 </div>
             </div>
             <div class="row justify-content-around">

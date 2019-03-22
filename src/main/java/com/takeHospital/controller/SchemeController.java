@@ -66,15 +66,18 @@ public class SchemeController {
 
         if(weight.equals("")){ schemeError.put("weightError", "Поле пустое."); }
 
-        if(gestation.equals("")){ schemeError.put("gestationError", "Поле пустое."); }
+        if(gestation.equals("")){
+            schemeError.put("gestationError", "Поле пустое.");
+        }else {
 
-        if (!(Integer.parseInt(gestation) >= 22 && Integer.parseInt(gestation) <= 32)){
-            schemeError.put("gestationError", "Срок гестации введен неверно. (22 ≤ срок гестации ≤ 32)");
+            if (!(Integer.parseInt(gestation) >= 22 && Integer.parseInt(gestation) <= 32)) {
+                schemeError.put("gestationError", "Срок гестации введен неверно. (22 ≤ срок гестации ≤ 32)");
+            }
         }
 
         if(temp.equals("")){ schemeError.put("tempError", "Поле пустое."); }
 
-        if(maxBE.equals("")){ schemeError.put("tempError", "Поле пустое."); }
+        if(maxBE.equals("")){ schemeError.put("maxBEError", "Поле пустое."); }
 
         if (schemeError.size() > 0){
             model.mergeAttributes(schemeError);

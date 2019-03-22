@@ -3,5 +3,5 @@
 <#--<#include "parts/security.ftl">-->
 
 <@c.page>
-    <@awc.action "/client_list/select/${client.id}" "Работа с пользователем" true/>
+    <@awc.action "/client_list/select/${client.id}" "Клиент" true/>
 </@c.page>

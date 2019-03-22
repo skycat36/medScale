@@ -27,6 +27,7 @@ public class ChartController {
             @RequestParam String selectedField,
             Model model
     ){
+        model.addAttribute("selectedField", selectedField);
         switch (selectedField){
             case "colClientInOPN": {
                 List temp = statisticService.getColClientInOPN();

@@ -112,7 +112,7 @@
             </form>
             <#else>
             <form method="get" action="/edit_profile_worker/create_profile_worker">
-                <div class="col-sm-1"><button type="submit" class="btn btn-primary ml-0">Создать пользователя</button></div>
+                <div class="col-sm-1"><button type="submit" class="btn btn-primary ml-0">Создать сотрудника</button></div>
             </form>
             </#if>
         </#if>
