@@ -19,22 +19,6 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public List<Client> findClientByName(){
-        return null;
-    }
-
-    public List<Client> findClientByFam(){
-        return null;
-    }
-
-    public List<Client> findClientBySecName(){
-        return null;
-    }
-
-    public List<Client> findClientByOpn(){
-        return null;
-    }
-
     public void updateProfileClient(Client client, Map<String, Object> schemeClient){
         client.setFam(schemeClient.get("fam").toString());
         client.setName(schemeClient.get("name").toString());

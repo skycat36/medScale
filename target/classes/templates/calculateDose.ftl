@@ -2,28 +2,34 @@
 <@c.page>
 <script type="text/javascript">
     function showHide(element_arr) {
-        //Если элемент с id-шником element_id существует
-        for (var i=0; i<element_arr.length; i++) {
-            if (document.getElementById(element_arr[i])) {
-                //Записываем ссылку на элемент в переменную obj
-                var obj2 = document.getElementById(element_arr[i]);
-                //Если css-свойство display не block, то:
-                if (obj2.style.display != "block") {
-                    obj2.style.display = "block";
+//        if (document.getElementById("checkWeight").checked) {
+            //Если элемент с id-шником element_id существует
+            for (var i = 0; i < element_arr.length; i++) {
+                if (document.getElementById(element_arr[i])) {
+                    //Записываем ссылку на элемент в переменную obj
+                    var obj2 = document.getElementById(element_arr[i]);
+                    //Если css-свойство display не block, то:
+                    if (obj2.style.display != "block") {
+                        obj2.style.display = "block";
+                        if (element_arr[i] == "id_weight_field"){
+                            document.getElementById(element_arr[i]).value =<#if weight_field??>${weight_field}<#else>""</#if>;
+                        }
+
+                    }
+                    else {
+                        obj2.style.display = "none";
+                    } //Скрываем элемент
                 }
-                else {
-                    obj2.style.display = "none";
-                } //Скрываем элемент
             }
-        }
+//        }
     }
     <#--function changeRate(valueSel) {-->
-        <#--if (document.getElementById("resChangeRate")) {-->
-            <#--let res = ${result};-->
-            <#--let resDose = ${sel_rate_dose};-->
-            <#--res = res * resDose / Number(valueSel);-->
-            <#--document.getElementById("resChangeRate").innerHTML = res;-->
-        <#--}-->
+    <#--if (document.getElementById("resChangeRate")) {-->
+    <#--let res = ${result};-->
+    <#--let resDose = ${sel_rate_dose};-->
+    <#--res = res * resDose / Number(valueSel);-->
+    <#--document.getElementById("resChangeRate").innerHTML = res;-->
+    <#--}-->
     <#--}-->
 
 </script>
@@ -65,14 +71,15 @@
                                 type="number" min="0.00000001" step="any">
                         <select class="custom-select col-sm-3 mr-2" name="sel_dose_weight" id="inputGroupSelect01">
                             <option <#if sel_dose_weight??><#if (sel_dose_weight=="1")>selected</#if></#if>
-                                     value="1">микрограммы</option>
+                                    value="1">микрограммы</option>
                             <option <#if sel_dose_weight??><#if (sel_dose_weight=="1000")>selected</#if></#if>
                                     value="1000">миллиграммы</option>
                             <option <#if sel_dose_weight??><#if (sel_dose_weight=="1000000")>selected</#if></#if>
                                     value="1000000">граммы</option>
                         </select>
 
-                        <label id="id_label_weight" style="display: none;" class="col-form-label sm-2">/кг</label>
+                        <label id="id_label_weight" style="display: <#if checkWeight??><#if checkWeight=="">none<#else>block</#if><#else>none</#if>;"
+                               class="col-form-label sm-2">/кг</label>
                         <label class="col-form-label">/</label>
                         <select class="custom-select col-sm-3 ml-2" name="sel_dose_time" id="inputGroupSelect01">
                             <option <#if sel_dose_time??><#if (sel_dose_time=="1")>selected</#if></#if>
@@ -104,9 +111,11 @@
                 </#if>
 
                 <div class="form-group row mt-3">
-                    <input type="checkbox" class="mr-3" style="zoom: 2;" onclick="showHide(['id_label_weight_for_calc', 'id_weight_field', 'id_label_weight'])">
+                <input id="checkWeight" type="checkbox" class="mr-3" style="zoom: 2;" name="checkWeight"
+                       onchange="showHide(['id_label_weight_for_calc', 'id_weight_field', 'id_label_weight'])"
+                    <#if checkWeight??><#if checkWeight=="on">checked</#if></#if>
                     <label class="col-form-label">Вес:</label>
-                    <div id="id_weight_field" class="form-group" style="display: none;">
+                    <div id="id_weight_field" class="form-group" style="display: <#if checkWeight??><#if checkWeight=="">none<#else>block</#if><#else>none</#if>;">
                         <input class="col-sm-5 mr-2" name="weight_field"
                                value="<#if weight_field??>${weight_field}</#if>"
                                type="number" min="1" step="any">
@@ -222,12 +231,14 @@
                     </div>
 
                     <div class="form-group row mt-0 mb-0 offset-md-2">
-                        <#if resultDose??>
-                            <label class="col-form-label mr-2">${resultDose}</label>
-                        </#if>
+                            <input class="col-form-label mr-2 ${(dose_fieldError??)?string('is-invalid', '')}"
+                                   name="result_dose_concentr"
+                                   value="<#if result_dose_concentr??>${result_dose_concentr}</#if>"
+                                   type="number" min="0.00000001" step="any"
+                            >
                         <select class="custom-select col-sm-3" name="sel_concentr_dose" id="inputGroupSelect01">
                             <option <#if sel_concentr_dose??><#if (sel_concentr_dose=="1")>selected</#if></#if>
-                                    value="1">миллилитр</option>
+                                    value="0.01">миллилитр</option>
                             <option <#if sel_concentr_dose??><#if (sel_concentr_dose=="1000")>selected</#if></#if>
                                     value="1000">литр</option>
                         </select>

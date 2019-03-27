@@ -127,6 +127,33 @@
         </div>
     </div>
 
+    <#--<div class="form-group row">
+        <label class="col-sm-2 col-form-label">Срок гестации :</label>
+        <div class="col-sm-3">
+            <input type="text" name="gestation" value="<#if client??><#if client.opn??>${client.opn}</#if></#if>"
+                   class="form-control small ${(opnError??)?string('is-invalid', '')}"
+                   placeholder="ОПН"/>
+            <#if opnError??>
+                <div class="invalid-feedback">
+                ${opnError}
+                </div>
+            </#if>
+        </div>
+
+        <label class="col-sm-2 col-form-label">Вес :</label>
+        <div class="col-sm-3">
+            <input type="date" name="weightClient"
+                   value="<#if client??><#if client.dateOfDeath??>${client.dateOfDeath}</#if></#if>"
+                   class="form-control small ${(dateOfDeathError??)?string('is-invalid', '')}"
+                   placeholder="Дата исхода"/>
+            <#if dateOfDeathError??>
+                <div class="invalid-feedback">
+                ${dateOfDeathError}
+                </div>
+            </#if>
+        </div>
+    </div>-->
+
     <#if isSave>
         <div class="container">
             <div class="row justify-content-around">
