@@ -100,17 +100,16 @@
     </div>
     </#if>
 
+
+
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Исход :</label>
         <div class="col-sm-3">
-            <input type="text" name="opn" value="<#if client??><#if client.opn??>${client.opn}</#if></#if>"
-                   class="form-control small ${(opnError??)?string('is-invalid', '')}"
-                   placeholder="ОПН"/>
-            <#if opnError??>
-                <div class="invalid-feedback">
-                ${opnError}
-                </div>
-            </#if>
+            <select class="custom-select" name="opn" id="inputGroupSelect01">
+                <#list opnList as obOpn>
+                    <option value="${obOpn.id}">${obOpn.opn}</option>
+                </#list>
+            </select>
         </div>
 
         <label class="col-sm-2 col-form-label">Летальный исход :</label>

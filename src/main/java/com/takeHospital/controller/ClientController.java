@@ -2,6 +2,7 @@ package com.takeHospital.controller;
 
 import com.takeHospital.domain.Client;
 import com.takeHospital.repository.ClientRepository;
+import com.takeHospital.repository.OpnRepository;
 import com.takeHospital.service.metodsScale.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,9 @@ public class ClientController {
 
     @Autowired
     private ClientRepository clientRepository;
+
+    @Autowired
+    private OpnRepository opnRepository;
 
     @Autowired
     private SNAPPEService snappeService;
@@ -42,7 +46,9 @@ public class ClientController {
 
     @GetMapping("/client_list/add_client")
     public String addClient(
+            Model model
     ){
+        model.addAttribute("opnList", opnRepository.findAll());
         return "createClient";
     }
 
@@ -84,11 +90,6 @@ public class ClientController {
             client.setDateOfArrival(null);
         }
 
-//        if(opn.equals("")){
-//            clientError.put("opnError", "ОПН не может быть пустым.");
-//            client.setOpn(null);
-//        }
-
         if (clientError.size() > 0){
             model.mergeAttributes(clientError);
             model.addAttribute("client", client);
@@ -97,7 +98,7 @@ public class ClientController {
 
         client.setFam(fam); client.setName(name); client.setSecName(secName);
         client.setBirthdate(LocalDate.parse(birthdate)); client.setDateOfArrival(LocalDate.parse(dateOfArrival));
-        //client.setOpn(opn);
+        client.setOpn(opnRepository.findById(Long.parseLong(opn)).get().getId());
         Long id = clientRepository.save(client).getId();
         return "redirect:/client_list/select/" + id;
     }
@@ -149,6 +150,7 @@ public class ClientController {
         model.addAttribute("listForSelectScheme", getListNameScheme());
         model.addAttribute("listForDeleteScheme", getListNameSchemeWhatHaveClient(client));
         model.addAttribute("mortalityRisk", this.mortalityRisk);
+        model.addAttribute("opnList", opnRepository.findAll());
         return "selectedClient";
     }
 
@@ -212,7 +214,7 @@ public class ClientController {
 
         client.setFam(fam); client.setName(name); client.setSecName(secName);
         client.setBirthdate(LocalDate.parse(birthdate)); client.setDateOfArrival(LocalDate.parse(dateOfArrival));
-        //client.setOpn(opn);
+        client.setOpn(opnRepository.findById(Long.parseLong(opn)).get().getId());
 
         if (!survayDate.equals("")){
             client.setSurvayDate(LocalDate.parse(survayDate));
