@@ -1,13 +1,11 @@
 package com.takeHospital.service.metodsScale;
 
-import com.takeHospital.domain.parametrsForScheme.PCS;
-import com.takeHospital.repository.repositoryScheme.PCSRepository;
+import com.takeHospital.domain.parametrsForScheme.ParamScheme;
+import com.takeHospital.repository.SchemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.Period;
 import java.time.temporal.ChronoUnit;
 
 @Service
@@ -17,7 +15,7 @@ public class PCSService implements MedScale {
     private static final int oneYear = 365;
 
     @Autowired
-    private PCSRepository pcsRepository;
+    private SchemeRepository schemeRepository;
 
     private int countBalls;
     private int countBallsForAge;
@@ -62,7 +60,7 @@ public class PCSService implements MedScale {
 
     @Override
     public int getCountProcLethalOutcome(int balls) {
-        PCS pcs = pcsRepository.findAll().get(0);
+        ParamScheme pcs = schemeRepository.findByNameSheme("pcs");
         return (pcs.getColibrProc() * balls) / countBallsForAge;
     }
 }

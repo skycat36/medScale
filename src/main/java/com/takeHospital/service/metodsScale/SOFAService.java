@@ -1,7 +1,7 @@
 package com.takeHospital.service.metodsScale;
 
-import com.takeHospital.domain.parametrsForScheme.SOFA;
-import com.takeHospital.repository.repositoryScheme.SOFARepository;
+import com.takeHospital.domain.parametrsForScheme.ParamScheme;
+import com.takeHospital.repository.SchemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class SOFAService implements MedScale {
 
     @Autowired
-    private SOFARepository sofaRepository;
+    private SchemeRepository schemeRepository;
 
     private int countBalls;
 
@@ -27,7 +27,7 @@ public class SOFAService implements MedScale {
 
     @Override
     public int getCountProcLethalOutcome(int balls) {
-        SOFA sofa = sofaRepository.findAll().get(0);
+        ParamScheme sofa = schemeRepository.findByNameSheme("sofa");
         return (balls * sofa.getColibrProc()) / sofa.getColibrBall();
     }
 }

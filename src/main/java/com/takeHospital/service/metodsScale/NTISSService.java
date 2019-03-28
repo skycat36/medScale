@@ -1,7 +1,7 @@
 package com.takeHospital.service.metodsScale;
 
-import com.takeHospital.domain.parametrsForScheme.NTISS;
-import com.takeHospital.repository.repositoryScheme.NTISSRepository;
+import com.takeHospital.domain.parametrsForScheme.ParamScheme;
+import com.takeHospital.repository.SchemeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class NTISSService implements MedScale {
 
     @Autowired
-    private NTISSRepository ntissRepository;
+    private SchemeRepository schemeRepository;
 
     private int countBalls;
 
@@ -31,7 +31,7 @@ public class NTISSService implements MedScale {
 
     @Override
     public int getCountProcLethalOutcome(int balls) {
-        NTISS ntiss = ntissRepository.findAll().get(0);
+        ParamScheme ntiss = schemeRepository.findByNameSheme("ntiss");
 
         return (balls * ntiss.getColibrProc()) / ntiss.getColibrBall();
     }

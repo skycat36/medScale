@@ -1,24 +1,30 @@
 package com.takeHospital.domain.parametrsForScheme;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.hibernate.validator.constraints.Length;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
-public class NTISS {
+@Table(name = "param_scheme")
+public class ParamScheme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "Название схемы")
+    @Length(max = 20, message = "Name scheme to long")
+    private String nameSheme;
 
     private int colibrBall;
 
     private int colibrProc;
 
-    public NTISS() {
+    public ParamScheme() {
     }
 
-    public NTISS(int colibrBall, int colibrProc) {
+    public ParamScheme(@NotBlank(message = "Название схемы") @Length(max = 20, message = "Name scheme to long") String nameSheme, int colibrBall, int colibrProc) {
+        this.nameSheme = nameSheme;
         this.colibrBall = colibrBall;
         this.colibrProc = colibrProc;
     }
@@ -29,6 +35,14 @@ public class NTISS {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNameSheme() {
+        return nameSheme;
+    }
+
+    public void setNameSheme(String nameSheme) {
+        this.nameSheme = nameSheme;
     }
 
     public int getColibrBall() {

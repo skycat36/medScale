@@ -2,10 +2,7 @@ package com.takeHospital.domain;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
@@ -40,10 +37,7 @@ public class Client {
 
     private LocalDate dateOfDeath;          //Дата смерти
 
-
-    @NotBlank(message = "ОПН не может быть пустым")
-    @Length(max = 50, message = "Name OPN too long")
-    private String opn;                     //Отделене ОПН
+    private Long opn;                        //Отделене ОПН
 
     private Integer crib2;                  //Оценка острого состояния новорожденного. Результат в балах.
     private Integer snapPe;                 //Перенатальная шкала острого состояния новорожденного. Результат в балах.
@@ -55,8 +49,7 @@ public class Client {
     public Client() {
     }
 
-    public Client(Long id, String fam, String name, String secName, LocalDate birthdate, LocalDate dateOfArrival, LocalDate survayDate, LocalDate dateOfDeparture, LocalDate dateOfDeath, String opn, Integer crib2, Integer snapPe, Integer ntiss, Integer pcs, Integer trips, Integer sofa) {
-        this.id = id;
+    public Client(@NotBlank(message = "Поле фамилия не может быть пустым") @Length(max = 50, message = "Family too long") String fam, @NotBlank(message = "Поле имя не может быть пустым") @Length(max = 50, message = "Name too long") String name, @NotBlank(message = "Поле отчество не может быть пустым") @Length(max = 50, message = "Second name too long") String secName, LocalDate birthdate, LocalDate dateOfArrival, LocalDate survayDate, LocalDate dateOfDeparture, LocalDate dateOfDeath, Long opn, Integer crib2, Integer snapPe, Integer ntiss, Integer pcs, Integer trips, Integer sofa) {
         this.fam = fam;
         this.name = name;
         this.secName = secName;
@@ -69,7 +62,6 @@ public class Client {
         this.crib2 = crib2;
         this.snapPe = snapPe;
         this.ntiss = ntiss;
-
         this.pcs = pcs;
         this.trips = trips;
         this.sofa = sofa;
@@ -147,11 +139,11 @@ public class Client {
         this.dateOfDeath = dateOfDeath;
     }
 
-    public String getOpn() {
+    public Long getOpn() {
         return opn;
     }
 
-    public void setOpn(String opn) {
+    public void setOpn(Long opn) {
         this.opn = opn;
     }
 

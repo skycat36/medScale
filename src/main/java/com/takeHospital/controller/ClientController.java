@@ -84,10 +84,10 @@ public class ClientController {
             client.setDateOfArrival(null);
         }
 
-        if(opn.equals("")){
-            clientError.put("opnError", "ОПН не может быть пустым.");
-            client.setOpn(null);
-        }
+//        if(opn.equals("")){
+//            clientError.put("opnError", "ОПН не может быть пустым.");
+//            client.setOpn(null);
+//        }
 
         if (clientError.size() > 0){
             model.mergeAttributes(clientError);
@@ -97,7 +97,7 @@ public class ClientController {
 
         client.setFam(fam); client.setName(name); client.setSecName(secName);
         client.setBirthdate(LocalDate.parse(birthdate)); client.setDateOfArrival(LocalDate.parse(dateOfArrival));
-        client.setOpn(opn);
+        //client.setOpn(opn);
         Long id = clientRepository.save(client).getId();
         return "redirect:/client_list/select/" + id;
     }
@@ -212,7 +212,7 @@ public class ClientController {
 
         client.setFam(fam); client.setName(name); client.setSecName(secName);
         client.setBirthdate(LocalDate.parse(birthdate)); client.setDateOfArrival(LocalDate.parse(dateOfArrival));
-        client.setOpn(opn);
+        //client.setOpn(opn);
 
         if (!survayDate.equals("")){
             client.setSurvayDate(LocalDate.parse(survayDate));
