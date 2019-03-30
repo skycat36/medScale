@@ -1,8 +1,10 @@
-<#macro action path nameAction isSave>
+<#import "parts/common.ftl" as c>
+
+<@c.page>
 <div class="form-group row">
-    <h1><label class="col-ml-2 col-form-label">${nameAction}</label></h1>
+    <h1><label class="col-ml-2 col-form-label">Обновить профиль пользователя ${user.login}</label></h1>
 </div>
-<form action="${path}" method="post">
+<form action="/edit_profile_worker/change_user/${user.id}" method="post">
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Логин :</label>
         <div class="col-sm-3">
@@ -95,24 +97,8 @@
     </div>
 
     <div class="form-group row">
-        <#if isSave>
-            <div class="col-sm-1 mr-4"><button type="submit" class="btn btn-primary ml-0">Сохранить</button></div>
-        <#else>
-            <div class="col-sm-1"><button type="submit" class="btn btn-primary ml-0">Создать профиль</button></div>
-        </#if>
+        <div class="col-sm-1 mr-4"><button type="submit" class="btn btn-primary ml-0">Сохранить</button></div>
         <input type="hidden" value="${_csrf.token}" name="_csrf">
-
+    </div>
 </form>
-
-    <#if isSave>
-        <#if user?exists>
-            <#if user.id != 1>
-            <form method="post" action="/edit_profile_worker/delete/${user.id}">
-                <div class="col-sm-1"><button type="submit" class="btn btn-primary ml-0">Удалить профиль</button></div>
-                <input type="hidden" value="${_csrf.token}" name="_csrf">
-            </form>
-            </#if>
-        </#if>
-    </#if>
-</div>
-</#macro>
+</@c.page>

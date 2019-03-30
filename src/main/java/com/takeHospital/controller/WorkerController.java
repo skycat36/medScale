@@ -28,12 +28,17 @@ public class WorkerController {
     @GetMapping("/worker_list")
     public String searchUsersByFam(
             @RequestParam(required = false, defaultValue = "") String filter,
+            @AuthenticationPrincipal Worker admin,
             Model model){
 
         if (filter != null && !filter.isEmpty()) {
             model.addAttribute("users", workerRepository.findByFam(filter));
         } else {
             model.addAttribute("users", workerRepository.findAll());
+        }
+
+        if (admin.getId() == 1){
+            model.addAttribute("admin", admin);
         }
 
         model.addAttribute("filter", filter);
@@ -133,6 +138,62 @@ public class WorkerController {
             workerRepository.deleteById(Long.parseLong(idWorker));
         }
         return "redirect:/logout";
+    }
+
+    @PostMapping("/edit_profile_worker/delete_some_profile/{idWorker}")
+    public String deleteSomeProfileWorker(
+            @PathVariable String idWorker
+    ){
+        if (!idWorker.equals("1")) {
+            workerRepository.deleteById(Long.parseLong(idWorker));
+        }
+        return "redirect:/worker_list";
+    }
+
+    @GetMapping("/edit_profile_worker/change_user/{idWorker}")
+    public String changeProfileWorker(
+            @PathVariable String idWorker,
+            Model model
+    ){
+        model.addAttribute("user", workerRepository.findById(Long.parseLong(idWorker)).get());
+        return "changeProfileWorker";
+    }
+
+    @PostMapping("/edit_profile_worker/change_user/{idWorker}")
+    public String changeProgileSomeWorker(
+            @PathVariable String idWorker,
+            @RequestParam String password2,
+            @ModelAttribute @Valid Worker worker,       //@ModelAttribute и @Valid вытягивает пользователя из формы пустого без id
+            BindingResult bindingResult,
+            Model model
+    ){
+        Map<String, String> errors;
+        Worker worker1 = workerRepository.findById(Long.parseLong(idWorker)).get();
+
+        if (!worker1.getLogin().equals(worker.getLogin())) {
+            if (workerRepository.findByLogin(worker.getLogin()) != null){
+                bindingResult.addError(new FieldError("worker","login", "Такой логин уже есть."));
+            }
+        }
+
+        if (!worker.getPassword().equals(password2)){
+            bindingResult.addError(new FieldError("worker","password2", "Поля паролей не совпадают"));
+        }
+
+        if (password2 == ""){
+            bindingResult.addError(new FieldError("worker", "password2", "Поле проверки пароля не может быть пустым" ));
+        }
+
+        if (bindingResult.hasErrors()){
+            errors = ControllerUtils.getErrors(bindingResult);
+            worker.setId(worker1.getId());
+            model.addAttribute("user", worker);
+            model.mergeAttributes(errors);
+            return "changeProfileWorker";
+        }
+
+        model.addAttribute("user", workerService.updateProfile(worker1, worker));
+        return "redirect:/worker_list";
     }
 
     private List<String> getListWithNameColums(){

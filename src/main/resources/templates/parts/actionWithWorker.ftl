@@ -6,7 +6,7 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Логин :</label>
         <div class="col-sm-3">
-            <input type="text" name="login" value="<#if isSave>${user.login}</#if>"
+            <input type="text" name="login" value="<#if user??>${user.login}</#if>"
                    class="form-control small ${(loginError??)?string('is-invalid', '')}"
                    placeholder="Логин"/>
             <#if loginError??>
@@ -45,7 +45,7 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Фамилия :</label>
         <div class="col-sm-3">
-            <input type="text" name="fam" value="<#if isSave>${user.fam}</#if>"
+            <input type="text" name="fam" value="<#if user??>${user.fam}</#if>"
                    class="form-control small ${(famError??)?string('is-invalid', '')}"
                    placeholder="Фамилия"/>
             <#if famError??>
@@ -58,7 +58,7 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Имя :</label>
         <div class="col-sm-3">
-            <input type="text" name="name" value="<#if isSave>${user.name}</#if>"
+            <input type="text" name="name" value="<#if user??>${user.name}</#if>"
                    class="form-control small ${(nameError??)?string('is-invalid', '')}"
                    placeholder="Имя"/>
             <#if nameError??>
@@ -71,7 +71,7 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Отчество :</label>
         <div class="col-sm-3">
-            <input type="text" name="secName" value="<#if isSave>${user.secName}</#if>"
+            <input type="text" name="secName" value="<#if user??>${user.secName}</#if>"
                    class="form-control small ${(secNameError??)?string('is-invalid', '')}"
                    placeholder="Отчество"/>
             <#if secNameError??>
@@ -85,7 +85,7 @@
         <label class="col-sm-2 col-form-label">Должность :</label>
         <div class="col-sm-3">
             <textarea name="position" class="form-control small ${(positionError??)?string('is-invalid', '')}"
-                      placeholder="Должность"><#if isSave>${user.position}</#if></textarea>
+                      placeholder="Должность"><#if user??>${user.position}</#if></textarea>
             <#if positionError??>
                 <div class="invalid-feedback">
                 ${positionError}
@@ -101,6 +101,7 @@
             <div class="col-sm-1"><button type="submit" class="btn btn-primary ml-0">Создать профиль</button></div>
         </#if>
         <input type="hidden" value="${_csrf.token}" name="_csrf">
+
 </form>
 
     <#if isSave>
@@ -110,13 +111,8 @@
                 <div class="col-sm-1"><button type="submit" class="btn btn-primary ml-0">Удалить профиль</button></div>
                 <input type="hidden" value="${_csrf.token}" name="_csrf">
             </form>
-            <#else>
-            <form method="get" action="/edit_profile_worker/create_profile_worker">
-                <div class="col-sm-1"><button type="submit" class="btn btn-primary ml-0">Создать сотрудника</button></div>
-            </form>
             </#if>
         </#if>
     </#if>
-
 </div>
 </#macro>

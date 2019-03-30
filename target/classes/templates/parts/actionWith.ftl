@@ -9,6 +9,9 @@
         <div class="row">
             <div class="col-sm-3 mr-0"><input type="text" name="filter" class="form-control ${(textError??)?string('is-invalid', '')}" value="${filter!""}" placeholder="Search"></div>
             <div class="col-sm-1"><button type="submit" class="btn btn-primary ml-0">Найти</button></div>
+            <#if admin??>
+                <div class="col-sm-4 ml-5"><a type="button"  class="btn btn-primary ml-0" href="/edit_profile_worker/create_profile_worker">Создать сотрудника</a></div>
+            </#if>
         </div>
     </div>
     <#if isClient>
@@ -67,6 +70,21 @@
                 <td>${user.name}</td>
                 <td>${user.secName}</td>
                 <td>${user.position}</td>
+                <#if admin??>
+                    <td>
+                        <#if (user.id != 1)>
+                            <div class="container mb-3">
+                                <div class="row">
+                                    <form action="/edit_profile_worker/delete_some_profile/${user.id}" method="post">
+                                        <div class="col-sm-2"><button type="submit">Удалить</div>
+                                        <input type="hidden" name="_csrf" value="${_csrf.token}" />
+                                    </form>
+                                    <div class="col-sm-1"><a href="/edit_profile_worker/change_user/${user.id}">Изменить</a></div>
+                                </div>
+                            </div>
+                        </#if>
+                    </td>
+                </#if>
             </tr>
             </#list>
         </#if>

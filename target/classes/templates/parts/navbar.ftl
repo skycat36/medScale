@@ -17,7 +17,10 @@
                 <a class="nav-link" href="/worker_list">База сотрудников</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/chart_stat">Статистические данные</a>
+                <a class="nav-link" href="/department">Отделения</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/chart_stat">Статистика</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/client_list/add_client">Добавить пациента</a>
