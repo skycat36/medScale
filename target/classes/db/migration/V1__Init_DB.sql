@@ -17,7 +17,7 @@ create table client (
     primary key (id)) engine=MyISAM;
 
 create table worker (
-    id bigint not null,
+    id bigint not null auto_increment,
     fam varchar(50),
     login varchar(50) not null,
     name varchar(50),

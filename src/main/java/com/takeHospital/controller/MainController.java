@@ -26,7 +26,7 @@ public class MainController {
 
     @GetMapping("/")
     public String greeting(Map<String, Object> model){
-        return "greeting";
+        return "/page/for_other/greeting";
     }
 
     @RequestMapping(value="/logout", method=RequestMethod.GET)
@@ -35,6 +35,6 @@ public class MainController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/";
+        return "redirect:/page/for_other/";
     }
 }

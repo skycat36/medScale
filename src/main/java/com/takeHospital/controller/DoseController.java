@@ -21,7 +21,7 @@ public class DoseController {
             Model model
     ){
         model.addAttribute("infution", "rate");
-        return "calculateDose";
+        return "/page/for_dose/calculateDose";
     }
 
     @GetMapping("/calc_dose")
@@ -29,7 +29,7 @@ public class DoseController {
             Model model
     ){
         model.addAttribute("infution", "calc_dose");
-        return "calculateDose";
+        return "/page/for_dose/calculateDose";
     }
 
     @GetMapping("/concentr")
@@ -37,7 +37,7 @@ public class DoseController {
             Model model
     ){
         model.addAttribute("infution", "concentr");
-        return "calculateDose";
+        return "/page/for_dose/calculateDose";
     }
 
     @PostMapping
@@ -156,7 +156,7 @@ public class DoseController {
             model.addAttribute("formError", "Заполните поля");
         }
 
-        return "calculateDose";
+        return "/page/for_dose/calculateDose";
     }
 
     private double rate(double dose, double dose_par, double weight, double concentr, double concentr_par){

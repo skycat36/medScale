@@ -43,7 +43,7 @@ public class WorkerController {
 
         model.addAttribute("filter", filter);
         model.addAttribute("colums", getListWithNameColums());
-        return "workerList";
+        return "/page/for_worker/workerList";
     }
 
 
@@ -53,12 +53,12 @@ public class WorkerController {
             Model model
     ){
         model.addAttribute("user", worker);
-        return "editProfileWorker";
+        return "/page/for_worker/editProfileWorker";
     }
 
     @GetMapping("/edit_profile_worker/create_profile_worker")
     public String showCreateProfileWorker(){
-        return "createProfileWorker";
+        return "/page/for_worker/createProfileWorker";
     }
 
     @PostMapping("/edit_profile_worker/create_profile_worker")
@@ -86,7 +86,7 @@ public class WorkerController {
             errors = ControllerUtils.getErrors(bindingResult);
             model.addAttribute("user", worker);
             model.mergeAttributes(errors);
-            return "createProfileWorker";
+            return "/page/for_worker/createProfileWorker";
         }
         workerService.addWorker(worker);
         return "redirect:/worker_list";
@@ -122,7 +122,7 @@ public class WorkerController {
             worker.setId(worker1.getId());
             model.addAttribute("user", worker);
             model.mergeAttributes(errors);
-            return "editProfileWorker";
+            return "/page/for_worker/editProfileWorker";
         }
 
         model.addAttribute("user", workerService.updateProfile(worker1, worker));
@@ -156,7 +156,7 @@ public class WorkerController {
             Model model
     ){
         model.addAttribute("user", workerRepository.findById(Long.parseLong(idWorker)).get());
-        return "changeProfileWorker";
+        return "/page/for_worker/changeProfileWorker";
     }
 
     @PostMapping("/edit_profile_worker/change_user/{idWorker}")
@@ -189,7 +189,7 @@ public class WorkerController {
             worker.setId(worker1.getId());
             model.addAttribute("user", worker);
             model.mergeAttributes(errors);
-            return "changeProfileWorker";
+            return "/page/for_worker/changeProfileWorker";
         }
 
         model.addAttribute("user", workerService.updateProfile(worker1, worker));

@@ -19,7 +19,7 @@ public class ChartController {
     public String showStatistic(
             Model model
     ){
-        return "statisticData";
+        return "/page/for_statistic/statisticData";
     }
 
     @PostMapping("/chart_stat")
@@ -63,6 +63,6 @@ public class ChartController {
         }
 
         model.addAttribute("selChart", selectedField);
-        return "statisticData";
+        return "/page/for_statistic/statisticData";
     }
 }

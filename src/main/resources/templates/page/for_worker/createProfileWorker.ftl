@@ -1,5 +1,5 @@
-<#import "parts/common.ftl" as c>
-<#import "parts/actionWithWorker.ftl" as aww>
+<#import "../../parts/common.ftl" as c>
+<#import "../../parts/actionWithWorker.ftl" as aww>
 <#--<#include "parts/security.ftl">-->
 
 <@c.page>

@@ -1,5 +1,5 @@
-<#import "parts/common.ftl" as c>
-<#import "parts/actionWith.ftl" as aw>
+<#import "../../parts/common.ftl" as c>
+<#import "../../parts/actionWith.ftl" as aw>
 
 <@c.page>
 <div class="text-center">

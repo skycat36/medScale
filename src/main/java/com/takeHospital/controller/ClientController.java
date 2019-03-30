@@ -49,7 +49,7 @@ public class ClientController {
             Model model
     ){
         model.addAttribute("opnList", opnRepository.findAll());
-        return "createClient";
+        return "/page/for_client/createClient";
     }
 
     @PostMapping("/client_list/add_client")
@@ -93,7 +93,7 @@ public class ClientController {
         if (clientError.size() > 0){
             model.mergeAttributes(clientError);
             model.addAttribute("client", client);
-            return "createClient";
+            return "/page/for_client/createClient";
         }
 
         client.setFam(fam); client.setName(name); client.setSecName(secName);
@@ -136,7 +136,7 @@ public class ClientController {
 
         model.addAttribute("filter", filter);
         model.addAttribute("colums", getListWithNameColums());
-        return "clientList";
+        return "/page/for_client/clientList";
     }
 
     @GetMapping("/client_list/select/{idClient}")
@@ -151,7 +151,7 @@ public class ClientController {
         model.addAttribute("listForDeleteScheme", getListNameSchemeWhatHaveClient(client));
         model.addAttribute("mortalityRisk", this.mortalityRisk);
         model.addAttribute("opnList", opnRepository.findAll());
-        return "selectedClient";
+        return "/page/for_client/selectedClient";
     }
 
     @PostMapping("/client_list/select/{idClient}")
@@ -209,7 +209,7 @@ public class ClientController {
         if (clientError.size() > 0){
             model.mergeAttributes(clientError);
             model.addAttribute("client", client);
-            return "selectedClient";
+            return "/page/for_client/selectedClient";
         }
 
         client.setFam(fam); client.setName(name); client.setSecName(secName);
@@ -268,7 +268,7 @@ public class ClientController {
 
         model.addAttribute("users", clientList);
         model.addAttribute("colums", getListWithNameColums());
-        return "clientList";
+        return "/page/for_client/clientList";
     }
 
 
