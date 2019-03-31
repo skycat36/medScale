@@ -21,4 +21,6 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     List<Client> findByOpn(String opn);
 
     List<Client> findByBirthdate(LocalDate localDate);
+
+    void deleteClientsByOpn(Long opn);
 }
