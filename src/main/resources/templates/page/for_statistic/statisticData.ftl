@@ -25,7 +25,7 @@
         chart.data(dps[0]);
 
         // set container id for the chart
-        chart.container('container');
+        chart.container('container0');
 
         // initiate chart drawing
         chart.draw();
@@ -65,7 +65,7 @@
         chart.yAxis().title("Количество пациентов");
 
         // set the container id
-        chart.container("container");
+        chart.container("container0");
 
         // initiate drawing the chart
         chart.draw();
@@ -105,7 +105,7 @@
         chart.yAxis().title("Количество дней");
 
         // set the container id
-        chart.container("container");
+        chart.container("container0");
 
         // initiate drawing the chart
         chart.draw();
@@ -114,15 +114,15 @@
     function drawLetalInYear() {
         // create a data table
         var table = anychart.data.table();
-    table.addData([
-        <#if listValue??>
-            <#list listOpn as nameOpn>
-                <#if (nameOpn_index > 0)>,</#if>
+        table.addData([
+            <#if listValue??>
+                <#list listOpn as nameOpn>
+                    <#if (nameOpn_index > 0)>,</#if>
                     ['${nameOpn}', ${listValue[nameOpn_index]}]
 
-            </#list>
-        </#if>
-    ]);
+                </#list>
+            </#if>
+        ]);
 
         // map the data
         mapping = table.mapAs({value: 1});
@@ -139,10 +139,58 @@
         chart.title("Статистика смертности по годам.");
 
         // set the chart container
-        chart.container("container");
+        chart.container("container0");
 
         // initiate drawing the chart
         chart.draw();
+    }
+
+    function drawSeverityOnEachScalePcs(){
+        <#if nameSchemes??>
+            <#list nameSchemes as scheme>
+                var dps = [[]];
+                var yValue;
+                var label;
+                <#if listProc??>
+                    <#list schemes[scheme_index] as sch>
+                        yValue = "${sch}";
+                        label = "${listProc[sch_index]}";
+                        dps[parseInt("0")].push({
+                            x : label,
+                            y : yValue
+                        });
+                    </#list>
+                </#if>
+
+                // create line chart
+                var chart = anychart.line();
+
+                var series = chart.line(dps[0]);
+
+                series.name("Количество пациентов");
+
+                // enable and configure labels on the series
+                //series.labels(true);
+                //series.labels().format("{%value}");
+
+                // set chart title
+                chart.title("Степень тяжести по шкале " + String("${scheme}"));
+
+                // set chart data
+                //chart.data(dps[0]);
+
+                //series.name("Количество пациентов");
+
+                chart.xAxis().title("Проценты");
+                chart.yAxis().title("Количество пациентов");
+
+                // set container id for the chart
+                chart.container('container' + ${scheme_index});
+
+                // initiate chart drawing
+                chart.draw();
+            </#list>
+        </#if>
     }
 
 </script>
@@ -162,6 +210,8 @@
                             value="timeClientInOPN">Средняя длительность прибывание пациента на койке</option>
                     <option <#if selChart??><#if (selChart=="letalInYear")>selected</#if></#if>
                             value="letalInYear">Смертность по годам</option>
+                    <option <#if selChart??><#if (selChart=="severityOnEachScale")>selected</#if></#if>
+                            value="severityOnEachScale">Степень тяжести по каждой шкале</option>
                 </select>
                 <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <div class="col-sm-1"><button type="submit" class="btn btn-primary ml-0">Выбрать</button></div>
@@ -169,7 +219,12 @@
         </div>
     </div>
 </form>
-<div id="container" style="height: 700px; width: 50%;"></div>
+<div id="container0" style="height: 400px; width: 50%;"></div>
+<div id="container1" style="height: 400px; width: 50%;"></div>
+<div id="container2" style="height: 400px; width: 50%;"></div>
+<div id="container3" style="height: 400px; width: 50%;"></div>
+<div id="container4" style="height: 400px; width: 50%;"></div>
+<div id="container5" style="height: 400px; width: 50%;"></div>
     <#if selChart??>
         <#if selChart == "colClientInOPN">
         <script>anychart.onDocumentReady(drawColClientInOPN())</script>
@@ -187,6 +242,39 @@
         <script>anychart.onDocumentReady(drawLetalInYear())</script>
         </#if>
 
+        <#if selChart == "severityOnEachScale">
+        <#--<script>-->
+        <#--var schem = <#list ntiss as ob>Array([{${ob},])</#list>;-->
+        <#--var proc = <#list listProc as pr>Array([{${pr},])</#list>;-->
+        <#--anychart.onDocumentReady(drawSeverityOnEachScale('ntiss', proc, schem))-->
+        <#--</script>-->
+
+        <script>anychart.onDocumentReady(drawSeverityOnEachScalePcs())</script>
+
+        <#--<script>-->
+        <#--var schem = <#list trips as ob>Array([{${ob},])</#list>;-->
+        <#--var proc = <#list listProc as pr>Array([{${pr},])</#list>;-->
+        <#--anychart.onDocumentReady(drawSeverityOnEachScale('trips', proc, schem))-->
+        <#--</script>-->
+
+        <#--<script>-->
+        <#--var schem = <#list sofa as ob>Array([{${ob},])</#list>;-->
+        <#--var proc = <#list listProc as pr>Array([{${pr},])</#list>;-->
+        <#--anychart.onDocumentReady(drawSeverityOnEachScale('sofa', proc, schem))-->
+        <#--</script>-->
+
+        <#--<script>-->
+        <#--var schem = <#list crib2 as ob>Array([{${ob},])</#list>;-->
+        <#--var proc = <#list listProc as pr>Array([{${pr},])</#list>;-->
+        <#--anychart.onDocumentReady(drawSeverityOnEachScale('crib2', proc, schem))-->
+        <#--</script>-->
+
+        <#--<script>-->
+        <#--var schem = <#list snappe as ob>Array([{${ob},])</#list>;-->
+        <#--var proc = <#list listProc as pr>Array([{${pr},])</#list>;-->
+        <#--anychart.onDocumentReady(drawSeverityOnEachScale('snappe', proc, schem))-->
+        <#--</script>-->
+        </#if>
 
     </#if>
 </@c.page>

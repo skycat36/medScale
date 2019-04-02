@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -52,6 +53,13 @@ public class ChartController {
                 List temp = statisticService.getLetalInYear();
                 model.addAttribute("listValue", temp.get(1));
                 model.addAttribute("listOpn",  temp.get(0));
+            } break;
+
+            case "severityOnEachScale": {
+                Map<String, List<Integer>> map = statisticService.getSeverityOnEachScale();
+                model.addAttribute("listProc", Arrays.asList(10, 20, 30, 40, 50, 60, 70, 80, 90, 100));
+                model.addAttribute("nameSchemes", map.keySet().toArray());
+                model.addAttribute("schemes", map.values());
             } break;
 
             default: {

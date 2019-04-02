@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface OpnRepository extends JpaRepository<Opn, Long> {
 
-    List<Opn> findByOpn(String opn);
+    Opn findByOpn(String opn);
 }

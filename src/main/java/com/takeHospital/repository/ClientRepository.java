@@ -14,11 +14,11 @@ import java.util.Optional;
 public interface ClientRepository extends JpaRepository<Client, Long> {
 
     @Query(value = "select DISTINCT opn from Client")
-    List<String> findAllOpn();
+    List<Long> findAllOpn();
 
     List<Client> findByFam(String fam);
 
-    List<Client> findByOpn(String opn);
+    List<Client> findByOpn(Long opn);
 
     List<Client> findByBirthdate(LocalDate localDate);
 

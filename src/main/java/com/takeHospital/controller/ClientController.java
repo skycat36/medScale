@@ -116,7 +116,8 @@ public class ClientController {
                     break;
                 }
                 case "opn": {
-                    this.clientList = clientRepository.findByOpn(filter);
+                    Long idOpn = opnRepository.findByOpn(filter).getId();
+                    this.clientList = clientRepository.findByOpn(idOpn);
                     break;
                 }
                 case "birthdate": {

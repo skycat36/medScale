@@ -62,7 +62,7 @@ public class OpnController {
         if (nameOpn.equals("")){
             opnError.put("nameOpnError", "Поле названия отделения пустое");
         }
-        if (!opnRepository.findByOpn(nameOpn).isEmpty()){
+        if (opnRepository.findByOpn(nameOpn) != null){
             opnError.put("nameOpnError", "Такое отделение уже есть");
         }
 
@@ -97,7 +97,7 @@ public class OpnController {
             opnError.put("nameOpnError", "Поле названия отделения пустое");
         }
 
-        if (!opnRepository.findByOpn(nameOpn).isEmpty()){
+        if (opnRepository.findByOpn(nameOpn) != null){
             opnError.put("nameOpnError", "Такое отделение уже есть");
         }
 
