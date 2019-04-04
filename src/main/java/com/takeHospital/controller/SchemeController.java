@@ -157,10 +157,13 @@ public class SchemeController {
     @PostMapping("/TRIPS")
     public String addSchemeTRIPS(
             @PathVariable String idClient,
-            @RequestParam String result,
+            @RequestParam("param[]") String[] param,
             Model model
 
     ){
+        client = clientRepository.findById(Long.parseLong(idClient)).get();
+
+        client.setTrips(tripsService.getCountProcLethalOutcome(ControllerUtils.getBallsFromStringArr(param)));
         return "redirect:/client_list/select/" + idClient;
     }
 

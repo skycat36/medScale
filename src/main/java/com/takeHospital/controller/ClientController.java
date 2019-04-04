@@ -355,10 +355,10 @@ public class ClientController {
             this.mortalityRisk += tempRisk;
         }
         if (client.getTrips()!=null) {
-            tempRisk = 0;
+            tempRisk = tripsService.getCountProcLethalOutcome(client.getTrips());
             countScheme++;
             listInfoAboutScheme.add(Arrays.asList("TRIPS",
-                    client.getTrips().toString(), "10%"));
+                    client.getTrips().toString(), String.valueOf(tempRisk) + "%"));
             this.mortalityRisk += tempRisk;
         }
         if (client.getSofa()!=null) {
