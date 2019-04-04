@@ -31,10 +31,14 @@ public class OpnController {
             @AuthenticationPrincipal Worker worker,
             Model model
     ){
-        model.addAttribute("colums", getListWithNameColums());
-        model.addAttribute("user", worker);
-        model.addAttribute("opns", opnRepository.findAll());
-        return "/page/for_client/opnClient";
+        if (worker.getId() == 1) {
+            model.addAttribute("colums", getListWithNameColums());
+            model.addAttribute("user", worker);
+            model.addAttribute("opns", opnRepository.findAll());
+            return "/page/for_client/opnClient";
+        }else {
+            return "redirect:/";
+        }
     }
 
     @PostMapping("/department/delete/{idOpn}")
@@ -48,8 +52,13 @@ public class OpnController {
 
     @GetMapping("/department/create_department")
     public String showCreateDepartment(
+            @AuthenticationPrincipal Worker worker
     ){
-        return "/page/for_client/createOpn";
+        if (worker.getId() == 1) {
+            return "/page/for_client/createOpn";
+        }else {
+            return "redirect:/";
+        }
     }
 
     @PostMapping("/department/create_department")
@@ -78,11 +87,16 @@ public class OpnController {
 
     @GetMapping("/department/update/{idOpn}")
     public String showUpdateDepartment(
+            @AuthenticationPrincipal Worker worker,
             @PathVariable String idOpn,
             Model model
     ){
-        model.addAttribute("nameOpn", opnRepository.findById(Long.parseLong(idOpn)).get().getOpn());
-        return "/page/for_client/updateOpn";
+        if (worker.getId() == 1) {
+            model.addAttribute("nameOpn", opnRepository.findById(Long.parseLong(idOpn)).get().getOpn());
+            return "/page/for_client/updateOpn";
+        }else {
+            return "redirect:/";
+        }
     }
 
     @PostMapping("/department/update/{idOpn}")

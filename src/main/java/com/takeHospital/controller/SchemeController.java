@@ -41,62 +41,56 @@ public class SchemeController {
     private PCSService pcsService;
 
     @GetMapping("/CRIB2")
-    public String showSchemeCRIB2(){
+    public String showSchemeCRIB2(
+            @PathVariable String idClient,
+            Model model
+    ){
+        client = clientRepository.findById(Long.parseLong(idClient)).get();
+        try{
+            crib2Service.proveGestation(client.getGestation(), client.getWeight(), client.getSex());
+        } catch (SchemeExeption exeption) {
+            model.addAttribute("gestationError", exeption.getMessage());
+        }
         return "/scheme/CRIB2";
     }
 
     @PostMapping("/CRIB2")
     public String addSchemeCRIB2(
             @PathVariable String idClient,
-            @RequestParam(defaultValue = "") String weight,
-            @RequestParam(defaultValue = "") String gestation,
             @RequestParam("param[]") String[] param,
             @RequestParam(defaultValue = "") String maxBE,
             @RequestParam(defaultValue = "") String temp,
-            @RequestParam(defaultValue = "") String selSex,
             Model model
 
     ){
         Map<String, String> schemeError = new HashMap<>();
         Map<String, String> attributes = new HashMap<>();
-        attributes.put("weight", weight);
-        attributes.put("gestation", gestation);
+
+        client = clientRepository.findById(Long.parseLong(idClient)).get();
         attributes.put("maxBE", maxBE);
         attributes.put("temp", temp);
-
-        if(weight.equals("")){ schemeError.put("weightError", "Поле пустое."); }
-
-        if(gestation.equals("")){
-            schemeError.put("gestationError", "Поле пустое.");
-        }else {
-
-            if (!(Integer.parseInt(gestation) >= 22 && Integer.parseInt(gestation) <= 32)) {
-                schemeError.put("gestationError", "Срок гестации введен неверно. (22 ≤ срок гестации ≤ 32)");
-            }
-        }
 
         if(temp.equals("")){ schemeError.put("tempError", "Поле пустое."); }
 
         if(maxBE.equals("")){ schemeError.put("maxBEError", "Поле пустое."); }
+
+        try {
+            crib2Service.proveGestation(client.getGestation(), client.getWeight(), client.getSex());
+        }catch (SchemeExeption exeption) {
+            schemeError.put("gestationError", "Вес не соответствует сроку гестации.");
+        }
 
         if (schemeError.size() > 0){
             model.mergeAttributes(schemeError);
             model.mergeAttributes(attributes);
             return "/scheme/CRIB2";
         }
-        try {
-            client = clientRepository.findById(Long.parseLong(idClient)).get();
 
-            client.setCrib2(new CRIB2Service(ControllerUtils.getBallsFromStringArr(param), Double.parseDouble(temp),
-                    Integer.parseInt(gestation), Double.parseDouble(weight), Double.parseDouble(maxBE), selSex).getCountBalls());
+        client.setCrib2(new CRIB2Service(ControllerUtils.getBallsFromStringArr(param), Double.parseDouble(temp),
+                client.getGestation(), client.getWeight(), Double.parseDouble(maxBE), client.getSex()).getCountBalls());
 
-            clientRepository.save(client);
-        }catch (SchemeExeption ex){
-            schemeError.put("weightError", ex.getMessage());
-            model.mergeAttributes(schemeError);
-            model.mergeAttributes(attributes);
-            return "/scheme/CRIB2";
-        }
+        clientRepository.save(client);
+
         return "redirect:/client_list/select/" + idClient;
     }
 

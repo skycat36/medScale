@@ -1,6 +1,7 @@
 package com.takeHospital.controller;
 
 import com.takeHospital.domain.Client;
+import com.takeHospital.domain.Opn;
 import com.takeHospital.repository.ClientRepository;
 import com.takeHospital.repository.OpnRepository;
 import com.takeHospital.service.metodsScale.*;
@@ -59,46 +60,74 @@ public class ClientController {
             @RequestParam String secName,
             @RequestParam String birthdate,
             @RequestParam String dateOfArrival,
-            @RequestParam String opn,
+            @RequestParam(defaultValue = "") String opn,
+            @RequestParam String gestation,
+            @RequestParam String weight1,
+            @RequestParam String sex,
             Model model
-    ){
+    ) {
         Map<String, String> clientError = new HashMap<>();
         Client client = new Client();
 
-        if(fam.equals("")){
+        if (fam.equals("")) {
             clientError.put("famError", "Поле фамилия не может быть пустым.");
             client.setFam(null);
         }
 
-        if(name.equals("")){
+        if (name.equals("")) {
             clientError.put("nameError", "Поле имя не может быть пустым.");
             client.setName(null);
         }
 
-        if(secName.equals("")){
+        if (secName.equals("")) {
             clientError.put("secNameError", "Поле отчество не может быть пустым.");
             client.setSecName(null);
         }
 
-        if(birthdate.equals("")){
+        if (gestation.equals("")) {
+            clientError.put("gestationError", "Поле гестация не может быть пустым.");
+            client.setFam(null);
+        }
+
+        if (weight1.equals("")) {
+            clientError.put("weightError", "Поле вес не может быть пустым.");
+            client.setFam(null);
+        }
+
+        if(opn.equals("")){
+            clientError.put("opnError", "ОПН не может быть пустым.");
+            client.setOpn(null);
+        }
+
+        if (birthdate.equals("")) {
             clientError.put("birthdateError", "Поле даты рождения не может быть пустым.");
             client.setBirthdate(null);
         }
 
-        if(dateOfArrival.equals("")){
+        if (dateOfArrival.equals("")) {
             clientError.put("dateOfArrivalError", "Поле даты прибытия не может быть пустым.");
             client.setDateOfArrival(null);
         }
 
-        if (clientError.size() > 0){
+        if (clientError.size() > 0) {
+            model.addAttribute("opnList", opnRepository.findAll());
+            model.addAttribute("sex", sex);
             model.mergeAttributes(clientError);
             model.addAttribute("client", client);
             return "/page/for_client/createClient";
         }
 
-        client.setFam(fam); client.setName(name); client.setSecName(secName);
-        client.setBirthdate(LocalDate.parse(birthdate)); client.setDateOfArrival(LocalDate.parse(dateOfArrival));
-        client.setOpn(opnRepository.findById(Long.parseLong(opn)).get().getId());
+        client.setFam(fam);
+        client.setName(name);
+        client.setSecName(secName);
+        client.setBirthdate(LocalDate.parse(birthdate));
+        client.setDateOfArrival(LocalDate.parse(dateOfArrival));
+        client.setGestation(Integer.parseInt(gestation));
+        client.setWeight(Integer.parseInt(weight1));
+        client.setSex(sex);
+        if (!opn.equals("")){
+            client.setOpn(opnRepository.findById(Long.parseLong(opn)).get().getId());
+        }
         Long id = clientRepository.save(client).getId();
         return "redirect:/client_list/select/" + id;
     }
@@ -130,10 +159,25 @@ public class ClientController {
                 }
                 default: this.clientList = clientRepository.findAll(); break;
             }
+
             model.addAttribute("users", this.clientList);
         } else {
+            this.clientList = clientRepository.findAll();
             model.addAttribute("users", clientRepository.findAll());
         }
+
+
+        Map<Long, String> mapOpn = new HashMap<>();
+        for (Opn opn: opnRepository.findAll()){
+            mapOpn.put(opn.getId(), opn.getOpn());
+        }
+
+        List<String> opnListClient = new ArrayList<>();
+        for (Client cl: this.clientList){
+            opnListClient.add(mapOpn.get(cl.getOpn()));
+        }
+
+        model.addAttribute("usersOpn", opnListClient);
 
         model.addAttribute("filter", filter);
         model.addAttribute("colums", getListWithNameColums());
@@ -152,6 +196,8 @@ public class ClientController {
         model.addAttribute("listForDeleteScheme", getListNameSchemeWhatHaveClient(client));
         model.addAttribute("mortalityRisk", this.mortalityRisk);
         model.addAttribute("opnList", opnRepository.findAll());
+        model.addAttribute("weight1",client.getWeight().toString());
+        model.addAttribute("sex", client.getSex());
         return "/page/for_client/selectedClient";
     }
 
@@ -171,7 +217,10 @@ public class ClientController {
             @RequestParam String survayDate,
             @RequestParam String dateOfDeparture,
             @RequestParam String dateOfDeath,
-            @RequestParam String opn,
+            @RequestParam(required = false, defaultValue = "") String opn,
+            @RequestParam String gestation,
+            @RequestParam String weight1,
+            @RequestParam String sex,
             Model model
     ){
         Client client = clientRepository.findById(Long.parseLong(idClient)).get();
@@ -207,15 +256,37 @@ public class ClientController {
             client.setOpn(null);
         }
 
+        if(gestation.equals("")){
+            clientError.put("gestationError", "Поле гестация не может быть пустым.");
+            client.setFam(null);
+        }
+
+        if(weight1.equals("")){
+            clientError.put("weightError", "Поле вес не может быть пустым.");
+            client.setFam(null);
+        }
+
         if (clientError.size() > 0){
             model.mergeAttributes(clientError);
+            model.addAttribute("listSchemeClient", getListSchemeWhatHaveClient(client));
+            model.addAttribute("listForSelectScheme", getListNameScheme());
+            model.addAttribute("listForDeleteScheme", getListNameSchemeWhatHaveClient(client));
+            model.addAttribute("mortalityRisk", this.mortalityRisk);
+            model.addAttribute("opnList", opnRepository.findAll());
             model.addAttribute("client", client);
+            model.addAttribute("weight1",weight1);
+            model.addAttribute("sex", sex);
             return "/page/for_client/selectedClient";
         }
 
         client.setFam(fam); client.setName(name); client.setSecName(secName);
         client.setBirthdate(LocalDate.parse(birthdate)); client.setDateOfArrival(LocalDate.parse(dateOfArrival));
-        client.setOpn(opnRepository.findById(Long.parseLong(opn)).get().getId());
+        client.setSex(sex);
+        client.setGestation(Integer.parseInt(gestation)); client.setWeight(Integer.parseInt(weight1));
+
+        if (!opn.equals("")) {
+            client.setOpn(opnRepository.findById(Long.parseLong(opn)).get().getId());
+        }
 
         if (!survayDate.equals("")){
             client.setSurvayDate(LocalDate.parse(survayDate));

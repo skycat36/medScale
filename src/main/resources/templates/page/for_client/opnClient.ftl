@@ -5,9 +5,11 @@
     <h1><label class="col-ml-2 col-form-label">База данных отделений</label></h1>
 </div>
 
-<div class="form-group row">
-    <a type="button" class="btn btn-primary" href="/department/create_department">Создать отделение</a>
-</div>
+    <#if (user.id == 1)>
+    <div class="form-group row">
+        <a type="button" class="btn btn-primary" href="/department/create_department">Создать отделение</a>
+    </div>
+    </#if>
 
 <table class="table">
     <thead>

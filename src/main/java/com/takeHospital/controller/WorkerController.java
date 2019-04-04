@@ -57,8 +57,14 @@ public class WorkerController {
     }
 
     @GetMapping("/edit_profile_worker/create_profile_worker")
-    public String showCreateProfileWorker(){
-        return "/page/for_worker/createProfileWorker";
+    public String showCreateProfileWorker(
+            @AuthenticationPrincipal Worker worker
+    ){
+        if (worker.getId() == 1) {
+            return "/page/for_worker/createProfileWorker";
+        }else {
+            return "redirect:/";
+        }
     }
 
     @PostMapping("/edit_profile_worker/create_profile_worker")
@@ -95,7 +101,6 @@ public class WorkerController {
     @PostMapping("/edit_profile_worker")
     public String editProfileWorker(
             @AuthenticationPrincipal Worker worker1,    //@AuthenticationPrincipal выдергивает
-
             @RequestParam String password2,
             @ModelAttribute @Valid Worker worker,       //@ModelAttribute и @Valid вытягивает пользователя из формы пустого без id
             BindingResult bindingResult,
@@ -152,11 +157,16 @@ public class WorkerController {
 
     @GetMapping("/edit_profile_worker/change_user/{idWorker}")
     public String changeProfileWorker(
+            @AuthenticationPrincipal Worker worker,
             @PathVariable String idWorker,
             Model model
     ){
-        model.addAttribute("user", workerRepository.findById(Long.parseLong(idWorker)).get());
-        return "/page/for_worker/changeProfileWorker";
+        if (worker.getId() == 1) {
+            model.addAttribute("user", workerRepository.findById(Long.parseLong(idWorker)).get());
+            return "/page/for_worker/changeProfileWorker";
+        }else {
+            return "redirect:/";
+        }
     }
 
     @PostMapping("/edit_profile_worker/change_user/{idWorker}")

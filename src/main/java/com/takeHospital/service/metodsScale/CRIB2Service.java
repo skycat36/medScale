@@ -3,7 +3,10 @@ package com.takeHospital.service.metodsScale;
 import com.takeHospital.domain.exeptions.SchemeExeption;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class CRIB2Service implements MedScale {
@@ -13,7 +16,7 @@ public class CRIB2Service implements MedScale {
     public CRIB2Service() {
     }
 
-    public CRIB2Service(int countBalls, double temp, int gestation, double weight, double maxBE, String selSex) throws SchemeExeption {
+    public CRIB2Service(int countBalls, double temp, int gestation, int weight, double maxBE, String selSex) {
         this.countBalls = countBalls;
 
         if (temp <= 29.6) { this.countBalls += 5; }
@@ -62,39 +65,102 @@ public class CRIB2Service implements MedScale {
             listMap.put(32, Arrays.asList(0, 0, 5, 3, 1, 0, 0, 0, 0, 0, 0));
         }
 
+        if (weight <= 500) {
+            this.countBalls += listMap.get(gestation).get(0);
+        }
+        if (weight >= 501 && weight <= 750) {
+            this.countBalls += listMap.get(gestation).get(1);
+        }
+        if (weight >= 751 && weight <= 1000) {
+            this.countBalls += listMap.get(gestation).get(2);
+        }
+        if (weight >= 1001 && weight <= 1250) {
+            this.countBalls += listMap.get(gestation).get(3);
+        }
+        if (weight >= 1251 && weight <= 1500) {
+            this.countBalls += listMap.get(gestation).get(4);
+        }
+        if (weight >= 1501 && weight <= 1750) {
+            this.countBalls += listMap.get(gestation).get(5);
+        }
+        if (weight >= 1751 && weight <= 2000) {
+            this.countBalls += listMap.get(gestation).get(6);
+        }
+        if (weight >= 2001 && weight <= 2250) {
+            this.countBalls += listMap.get(gestation).get(7);
+        }
+        if (weight >= 2251 && weight <= 2500) {
+            this.countBalls += listMap.get(gestation).get(8);
+        }
+        if (weight >= 2501 && weight <= 2750) {
+            this.countBalls += listMap.get(gestation).get(9);
+        }
+        if (weight >= 2751 && weight <= 3000) {
+            this.countBalls += listMap.get(gestation).get(10);
+        }
+    }
+
+    public void proveGestation(Integer gest, Integer weight, String selSex) throws SchemeExeption {
+        Map<Integer, List<Integer>> listMap = new HashMap<>();
+        if (selSex.equals("male")) {
+            listMap.put(22, Arrays.asList(15, 14));
+            listMap.put(23, Arrays.asList(14, 13, 12, 12));
+            listMap.put(24, Arrays.asList(13, 12, 11, 10));
+            listMap.put(25, Arrays.asList(12, 11, 10, 9));
+            listMap.put(26, Arrays.asList(11, 10, 8, 8, 8));
+            listMap.put(27, Arrays.asList(10, 9, 7, 7, 6, 6));
+            listMap.put(28, Arrays.asList(10, 8, 7, 6, 5, 5));
+            listMap.put(29, Arrays.asList(0, 8, 6, 5, 3, 3, 3));
+            listMap.put(30, Arrays.asList(0, 8, 6, 4, 3, 2, 1, 2, 3));
+            listMap.put(31, Arrays.asList(0, 8, 6, 3, 2, 1, 0, 0, 0, 1));
+            listMap.put(32, Arrays.asList(0, 0, 6, 3, 1, 0, 0, 0, 0, 0, 0));
+        } else {
+            listMap.put(22, Arrays.asList(14, 13));
+            listMap.put(23, Arrays.asList(13, 12, 11, 11));
+            listMap.put(24, Arrays.asList(12, 11, 10, 10));
+            listMap.put(25, Arrays.asList(11, 10, 9, 8));
+            listMap.put(26, Arrays.asList(11, 9, 8, 7, 7));
+            listMap.put(27, Arrays.asList(10, 8, 7, 6, 5, 6));
+            listMap.put(28, Arrays.asList(10, 8, 6, 5, 4, 4));
+            listMap.put(29, Arrays.asList(0, 7, 5, 4, 3, 3, 3));
+            listMap.put(30, Arrays.asList(0, 7, 5, 3, 2, 1, 1, 1, 2));
+            listMap.put(31, Arrays.asList(0, 7, 5, 3, 1, 0, 0, 0, 0, 1));
+            listMap.put(32, Arrays.asList(0, 0, 5, 3, 1, 0, 0, 0, 0, 0, 0));
+        }
+
         try {
             if (weight <= 500) {
-                this.countBalls += listMap.get(gestation).get(0);
+                listMap.get(gest).get(0);
             }
             if (weight >= 501 && weight <= 750) {
-                this.countBalls += listMap.get(gestation).get(1);
+                listMap.get(gest).get(1);
             }
             if (weight >= 751 && weight <= 1000) {
-                this.countBalls += listMap.get(gestation).get(2);
+                listMap.get(gest).get(2);
             }
             if (weight >= 1001 && weight <= 1250) {
-                this.countBalls += listMap.get(gestation).get(3);
+                listMap.get(gest).get(3);
             }
             if (weight >= 1251 && weight <= 1500) {
-                this.countBalls += listMap.get(gestation).get(4);
+                listMap.get(gest).get(4);
             }
             if (weight >= 1501 && weight <= 1750) {
-                this.countBalls += listMap.get(gestation).get(5);
+                listMap.get(gest).get(5);
             }
             if (weight >= 1751 && weight <= 2000) {
-                this.countBalls += listMap.get(gestation).get(6);
+                listMap.get(gest).get(6);
             }
             if (weight >= 2001 && weight <= 2250) {
-                this.countBalls += listMap.get(gestation).get(7);
+                listMap.get(gest).get(7);
             }
             if (weight >= 2251 && weight <= 2500) {
-                this.countBalls += listMap.get(gestation).get(8);
+                listMap.get(gest).get(8);
             }
             if (weight >= 2501 && weight <= 2750) {
-                this.countBalls += listMap.get(gestation).get(9);
+                listMap.get(gest).get(9);
             }
             if (weight >= 2751 && weight <= 3000) {
-                this.countBalls += listMap.get(gestation).get(10);
+                listMap.get(gest).get(10);
             }
         }catch (Exception ex){
             throw new SchemeExeption("Вес не соответствует сроку гестации");

@@ -37,7 +37,13 @@ public class Client {
 
     private LocalDate dateOfDeath;          //Дата смерти
 
-    private Long opn;                        //Отделене ОПН
+    private Long opn;                       //Отделене ОПН
+
+    private Integer gestation;              //Срок гестации
+
+    private Integer weight;                 //Вес
+
+    private String sex;                     //Пол
 
     private Integer crib2;                  //Оценка острого состояния новорожденного. Результат в балах.
     private Integer snapPe;                 //Перенатальная шкала острого состояния новорожденного. Результат в балах.
@@ -49,7 +55,7 @@ public class Client {
     public Client() {
     }
 
-    public Client(@NotBlank(message = "Поле фамилия не может быть пустым") @Length(max = 50, message = "Family too long") String fam, @NotBlank(message = "Поле имя не может быть пустым") @Length(max = 50, message = "Name too long") String name, @NotBlank(message = "Поле отчество не может быть пустым") @Length(max = 50, message = "Second name too long") String secName, LocalDate birthdate, LocalDate dateOfArrival, LocalDate survayDate, LocalDate dateOfDeparture, LocalDate dateOfDeath, Long opn, Integer crib2, Integer snapPe, Integer ntiss, Integer pcs, Integer trips, Integer sofa) {
+    public Client(@NotBlank(message = "Поле фамилия не может быть пустым") @Length(max = 50, message = "Family too long") String fam, @NotBlank(message = "Поле имя не может быть пустым") @Length(max = 50, message = "Name too long") String name, @NotBlank(message = "Поле отчество не может быть пустым") @Length(max = 50, message = "Second name too long") String secName, LocalDate birthdate, LocalDate dateOfArrival, LocalDate survayDate, LocalDate dateOfDeparture, LocalDate dateOfDeath, Long opn, Integer gestation, Integer weight, String sex, Integer crib2, Integer snapPe, Integer ntiss, Integer pcs, Integer trips, Integer sofa) {
         this.fam = fam;
         this.name = name;
         this.secName = secName;
@@ -59,6 +65,9 @@ public class Client {
         this.dateOfDeparture = dateOfDeparture;
         this.dateOfDeath = dateOfDeath;
         this.opn = opn;
+        this.gestation = gestation;
+        this.weight = weight;
+        this.sex = sex;
         this.crib2 = crib2;
         this.snapPe = snapPe;
         this.ntiss = ntiss;
@@ -145,6 +154,30 @@ public class Client {
 
     public void setOpn(Long opn) {
         this.opn = opn;
+    }
+
+    public Integer getGestation() {
+        return gestation;
+    }
+
+    public void setGestation(Integer gestation) {
+        this.gestation = gestation;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Integer weight) {
+        this.weight = weight;
+    }
+
+    public String getSex() {
+        return sex;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
     }
 
     public Integer getCrib2() {

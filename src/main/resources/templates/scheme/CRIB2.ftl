@@ -4,6 +4,13 @@
 <div class="form-group row justify-content-center">
     <h1><label class="col-ml-2 col-form-label">Схема CRIB2</label></h1>
 </div>
+<div class="row justify-content-center">
+    <#if gestationError??>
+        <div class="alert alert-danger" role="alert">
+        ${gestationError}
+        </div>
+    </#if>
+</div>
 <form method="post" action="">
     <div class="container">
         <div class="row justify-content-center">
@@ -15,30 +22,6 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td scope="row">Вес при рождении, г</td>
-                    <td><input type="number" step="any" name="weight" value="<#if weight??>${weight}</#if>"
-                               class="form-control small ${(weightError??)?string('is-invalid', '')}"
-                               placeholder="Введите значение">
-                        <#if weightError??>
-                            <div class="invalid-feedback">
-                            ${weightError}
-                            </div>
-                        </#if>
-                    </td>
-                </tr>
-                <tr>
-                    <td scope="row">Срок гестации, нед</td>
-                    <td><input type="number" name="gestation" value="<#if gestation??>${gestation}</#if>"
-                               class="form-control small ${(gestationError??)?string('is-invalid', '')}"
-                               placeholder="Введите значение">
-                        <#if gestationError??>
-                            <div class="invalid-feedback">
-                            ${gestationError}
-                            </div>
-                        </#if>
-                    </td>
-                </tr>
                 <tr>
                     <td scope="row">Врожденные пороки (исключая несовместимые с жизнью)</td>
                     <td><select class="custom-select" name="param[]" id="inputGroupSelect01">
@@ -92,14 +75,6 @@
                             ${tempError}
                             </div>
                         </#if>
-                    </td>
-                </tr>
-                <tr>
-                    <td scope="row">Пол</td>
-                    <td><select class="custom-select" name="selSex" id="inputGroupSelect01">
-                        <option value="male">М</option>
-                        <option value="female">Ж</option>
-                    </select>
                     </td>
                 </tr>
                 </tbody>

@@ -16,9 +16,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="/worker_list">База сотрудников</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/department">Отделения</a>
-            </li>
+            <#if (user.id == 1)>
+                <li class="nav-item">
+                    <a class="nav-link" href="/department">Отделения</a>
+                </li>
+            </#if>
             <li class="nav-item">
                 <a class="nav-link" href="/chart_stat">Статистика</a>
             </li>
