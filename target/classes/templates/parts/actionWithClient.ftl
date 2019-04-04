@@ -73,31 +73,31 @@
         </div>
     </div>
     <#if isSave>
-    <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Дата обследования :</label>
-        <div class="col-sm-3">
-            <input type="date" name="survayDate" value="<#if client??><#if client.survayDate??>${client.survayDate}</#if></#if>"
-                   class="form-control small ${(survayDateError??)?string('is-invalid', '')}"
-                   placeholder="Дата рождения"/>
-            <#if survayDateError??>
-                <div class="invalid-feedback">
-                ${survayDateError}
-                </div>
-            </#if>
-        </div>
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Дата обследования :</label>
+            <div class="col-sm-3">
+                <input type="date" name="survayDate" value="<#if client??><#if client.survayDate??>${client.survayDate}</#if></#if>"
+                       class="form-control small ${(survayDateError??)?string('is-invalid', '')}"
+                       placeholder="Дата рождения"/>
+                <#if survayDateError??>
+                    <div class="invalid-feedback">
+                    ${survayDateError}
+                    </div>
+                </#if>
+            </div>
 
-        <label class="col-sm-2 col-form-label">Дата выписки :</label>
-        <div class="col-sm-3">
-            <input type="date" name="dateOfDeparture" value="<#if client??><#if client.dateOfDeparture??>${client.dateOfDeparture}</#if></#if>"
-                   class="form-control small ${(dateOfDepartureError??)?string('is-invalid', '')}"
-                   placeholder="Дата рождения"/>
-            <#if dateOfDepartureError??>
-                <div class="invalid-feedback">
-                ${dateOfDepartureError}
-                </div>
-            </#if>
+            <label class="col-sm-2 col-form-label">Дата выписки :</label>
+            <div class="col-sm-3">
+                <input type="date" name="dateOfDeparture" value="<#if client??><#if client.dateOfDeparture??>${client.dateOfDeparture}</#if></#if>"
+                       class="form-control small ${(dateOfDepartureError??)?string('is-invalid', '')}"
+                       placeholder="Дата рождения"/>
+                <#if dateOfDepartureError??>
+                    <div class="invalid-feedback">
+                    ${dateOfDepartureError}
+                    </div>
+                </#if>
+            </div>
         </div>
-    </div>
     </#if>
 
 
@@ -105,53 +105,70 @@
     <div class="form-group row">
         <label class="col-sm-2 col-form-label">Исход :</label>
         <div class="col-sm-3">
-            <select class="custom-select" name="opn" id="inputGroupSelect01">
+            <select class="custom-select ${(opnError??)?string('is-invalid', '')}"
+                    name="opn" id="inputGroupSelect01">
                 <#list opnList as obOpn>
                     <option value="${obOpn.id}">${obOpn.opn}</option>
                 </#list>
             </select>
-        </div>
-
-        <label class="col-sm-2 col-form-label">Летальный исход :</label>
-        <div class="col-sm-3">
-            <input type="date" name="dateOfDeath"
-                   value="<#if client??><#if client.dateOfDeath??>${client.dateOfDeath}</#if></#if>"
-                   class="form-control small ${(dateOfDeathError??)?string('is-invalid', '')}"
-                   placeholder="Дата исхода"/>
-            <#if dateOfDeathError??>
-                <div class="invalid-feedback">
-                ${dateOfDeathError}
-                </div>
-            </#if>
-        </div>
-    </div>
-
-    <#--<div class="form-group row">
-        <label class="col-sm-2 col-form-label">Срок гестации :</label>
-        <div class="col-sm-3">
-            <input type="text" name="gestation" value="<#if client??><#if client.opn??>${client.opn}</#if></#if>"
-                   class="form-control small ${(opnError??)?string('is-invalid', '')}"
-                   placeholder="ОПН"/>
             <#if opnError??>
                 <div class="invalid-feedback">
                 ${opnError}
                 </div>
             </#if>
         </div>
+        <#if isSave>
+            <label class="col-sm-2 col-form-label">Летальный исход :</label>
+            <div class="col-sm-3">
+                <input type="date" name="dateOfDeath"
+                       value="<#if client??><#if client.dateOfDeath??>${client.dateOfDeath}</#if></#if>"
+                       class="form-control small ${(dateOfDeathError??)?string('is-invalid', '')}"
+                       placeholder="Дата исхода"/>
+                <#if dateOfDeathError??>
+                    <div class="invalid-feedback">
+                    ${dateOfDeathError}
+                    </div>
+                </#if>
+            </div>
+        </#if>
+    </div>
 
-        <label class="col-sm-2 col-form-label">Вес :</label>
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Срок гестации, нед :</label>
         <div class="col-sm-3">
-            <input type="date" name="weightClient"
-                   value="<#if client??><#if client.dateOfDeath??>${client.dateOfDeath}</#if></#if>"
-                   class="form-control small ${(dateOfDeathError??)?string('is-invalid', '')}"
-                   placeholder="Дата исхода"/>
-            <#if dateOfDeathError??>
+            <input type="number" step="0" name="gestation" value="<#if client??><#if client.gestation??>${client.gestation}</#if></#if>"
+                   class="form-control small ${(gestationError??)?string('is-invalid', '')}"
+                   placeholder="Срок гестации"/>
+            <#if gestationError??>
                 <div class="invalid-feedback">
-                ${dateOfDeathError}
+                ${gestationError}
                 </div>
             </#if>
         </div>
-    </div>-->
+
+        <label class="col-sm-2 col-form-label">Вес, г :</label>
+        <div class="col-sm-3">
+            <input type="number" step="0" name="weight1"
+                   value="<#if weight1??>${weight1}</#if>"
+                   class="form-control small ${(weightError??)?string('is-invalid', '')}"
+                   placeholder="Вес"/>
+            <#if weightError??>
+                <div class="invalid-feedback">
+                ${weightError}
+                </div>
+            </#if>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Пол :</label>
+        <div class="col-sm-3">
+            <select class="custom-select" name="sex" id="inputGroupSelect01">
+                <option value="male" <#if sex??><#if sex == 'male'>selected</#if></#if>>Муж</option>
+                <option value="female" <#if sex??><#if sex == 'female'>selected</#if></#if>>Жен</option>
+            </select>
+        </div>
+    </div>
 
     <#if isSave>
         <div class="container">

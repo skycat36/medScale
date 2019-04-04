@@ -45,7 +45,7 @@
                 <td>${user.fam}</td>
                 <td>${user.name}</td>
                 <td>${user.secName}</td>
-                <td>${user.opn}</td>
+                <td>${usersOpn[user_index]}</td>
                 <td>${user.birthdate}</td>
                 <td>${user.dateOfArrival}</td>
                 <td><#if user.dateOfDeparture??>${user.dateOfDeparture}<#else>Нет</#if></td>
