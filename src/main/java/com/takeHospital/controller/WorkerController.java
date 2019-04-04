@@ -1,6 +1,8 @@
 package com.takeHospital.controller;
 
 import com.takeHospital.domain.Worker;
+import com.takeHospital.domain.parametrsForScheme.ParamScheme;
+import com.takeHospital.repository.SchemeRepository;
 import com.takeHospital.repository.WorkerRepository;
 import com.takeHospital.service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +24,9 @@ public class WorkerController {
 
     @Autowired
     private WorkerRepository workerRepository;
+
+    @Autowired
+    private SchemeRepository schemeRepository;
 
     @Autowired
     private WorkerService workerService;
@@ -64,6 +70,111 @@ public class WorkerController {
             return "/page/for_worker/createProfileWorker";
         }else {
             return "redirect:/";
+        }
+    }
+
+    @GetMapping("/edit_profile_worker/change_param_scheme")
+    public String showRegulateParamScheme(
+            @AuthenticationPrincipal Worker worker,
+            Model model
+    ){
+        if (worker.getId() == 1) {
+            model.addAttribute("ntiss", schemeRepository.findByNameSheme("ntiss"));
+            model.addAttribute("pcs", schemeRepository.findByNameSheme("pcs"));
+            model.addAttribute("snappe", schemeRepository.findByNameSheme("snappe"));
+            model.addAttribute("sofa", schemeRepository.findByNameSheme("sofa"));
+            return "/page/for_worker/changeParamScheme";
+        }else {
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/edit_profile_worker/change_param_scheme")
+    public String createProfileWorker(
+            @RequestParam String ballNtiss,
+            @RequestParam String procNtiss,
+            @RequestParam String procPcs,
+            @RequestParam String ballSnappe,
+            @RequestParam String procSnappe,
+            @RequestParam String ballSofa,
+            @RequestParam String procSofa,
+            Model model
+    ){
+        Map<String, String> mapErrors = new HashMap<>();
+
+        if (ballNtiss.equals("")){
+            mapErrors.put("ballNtissError", "Поле пустое.");
+        }
+
+        if (procNtiss.equals("")){
+            mapErrors.put("procNtissError", "Поле пустое.");
+        }
+
+        if (procPcs.equals("")){
+            mapErrors.put("procPcsError", "Поле пустое.");
+        }
+
+        if (ballSnappe.equals("")){
+            mapErrors.put("ballSnappeError", "Поле пустое.");
+        }
+
+        if (procSnappe.equals("")){
+            mapErrors.put("procSnappeError", "Поле пустое.");
+        }
+
+        if (ballSofa.equals("")){
+            mapErrors.put("ballSofaError", "Поле пустое.");
+        }
+
+        if (procSofa.equals("")){
+            mapErrors.put("procSofaError", "Поле пустое.");
+        }
+
+        if (mapErrors.isEmpty()) {
+            ParamScheme paramScheme = schemeRepository.findByNameSheme("ntiss");
+            paramScheme.setColibrBall(Integer.parseInt(ballNtiss));
+            paramScheme.setColibrProc(Integer.parseInt(procNtiss));
+            schemeRepository.save(paramScheme);
+
+            paramScheme = schemeRepository.findByNameSheme("pcs");
+            paramScheme.setColibrProc(Integer.parseInt(procPcs));
+            schemeRepository.save(paramScheme);
+
+            paramScheme = schemeRepository.findByNameSheme("snappe");
+            paramScheme.setColibrBall(Integer.parseInt(ballSnappe));
+            paramScheme.setColibrProc(Integer.parseInt(procSnappe));
+            schemeRepository.save(paramScheme);
+
+            paramScheme = schemeRepository.findByNameSheme("sofa");
+            paramScheme.setColibrBall(Integer.parseInt(ballSofa));
+            paramScheme.setColibrProc(Integer.parseInt(procSofa));
+            schemeRepository.save(paramScheme);
+
+            return "redirect:/edit_profile_worker/change_param_scheme";
+
+        }else {
+            ParamScheme paramScheme = new ParamScheme();
+            if (!ballNtiss.equals("")) {paramScheme.setColibrBall(Integer.parseInt(ballNtiss));}
+            if (!procNtiss.equals("")) {paramScheme.setColibrProc(Integer.parseInt(procNtiss));}
+            model.addAttribute("ntiss", paramScheme);
+
+            paramScheme = new ParamScheme();
+            if (!procPcs.equals("")) {
+                paramScheme.setColibrBall(-1);
+                paramScheme.setColibrProc(Integer.parseInt(procPcs));}
+            model.addAttribute("pcs", paramScheme);
+
+            paramScheme = new ParamScheme();
+            if (!ballSnappe.equals("")) {paramScheme.setColibrBall(Integer.parseInt(ballSnappe));}
+            if (!procSnappe.equals("")) {paramScheme.setColibrProc(Integer.parseInt(procSnappe));}
+            model.addAttribute("snappe", paramScheme);
+
+            paramScheme = new ParamScheme();
+            if (!ballSofa.equals("")) {paramScheme.setColibrBall(Integer.parseInt(ballSofa));}
+            if (!procSofa.equals("")) {paramScheme.setColibrProc(Integer.parseInt(procSofa));}
+            model.addAttribute("sofa", paramScheme);
+            model.mergeAttributes(mapErrors);
+            return "/page/for_worker/changeParamScheme";
         }
     }
 
@@ -131,7 +242,6 @@ public class WorkerController {
         }
 
         model.addAttribute("user", workerService.updateProfile(worker1, worker));
-        //SecurityContextHolder.getContext().setAuthentication(null);
         return "redirect:/logout";
     }
 

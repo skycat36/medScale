@@ -29,3 +29,19 @@ INSERT INTO `hospital`.`param_scheme`
 `name_sheme`)
 VALUES
 (4, 24, 100, 'sofa');
+
+INSERT INTO `hospital`.`param_scheme`
+(`id`,
+`colibr_ball`,
+`colibr_proc`,
+`name_sheme`)
+VALUES
+(5, -1, -1, 'trips');
+
+INSERT INTO `hospital`.`param_scheme`
+(`id`,
+`colibr_ball`,
+`colibr_proc`,
+`name_sheme`)
+VALUES
+(6, -1, -1, 'crib2');
