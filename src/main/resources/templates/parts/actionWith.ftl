@@ -7,7 +7,7 @@
     </#if>
     <div class="container mb-3">
         <div class="row">
-            <div class="col-sm-3 mr-0"><input type="text" name="filter" class="form-control ${(textError??)?string('is-invalid', '')}" value="${filter!""}" placeholder="Search"></div>
+            <div class="col-sm-3 mr-0"><input type="text" name="filter" class="form-control ${(textError??)?string('is-invalid', '')}" value="${filter!""}" placeholder="Поиск"></div>
             <div class="col-sm-1"><button type="submit" class="btn btn-primary ml-0">Найти</button></div>
             <#if admin??>
                 <div class="col-sm-4 ml-5"><a type="button"  class="btn btn-primary" href="/edit_profile_worker/create_profile_worker">Создать сотрудника</a></div>

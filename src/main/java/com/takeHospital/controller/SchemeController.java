@@ -157,7 +157,7 @@ public class SchemeController {
     ){
         client = clientRepository.findById(Long.parseLong(idClient)).get();
 
-        client.setTrips(tripsService.getCountProcLethalOutcome(ControllerUtils.getBallsFromStringArr(param)));
+        client.setTrips(new TRIPSService((ControllerUtils.getBallsFromStringArr(param))).getCountBalls());
         return "redirect:/client_list/select/" + idClient;
     }
 

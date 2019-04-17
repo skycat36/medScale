@@ -66,7 +66,6 @@ public class ChartController {
                 List temp = statisticService.getColClientInOPN();
                 model.addAttribute("listValue", temp.get(1));
                 model.addAttribute("listOpn",  temp.get(0));
-
             }break;
         }
 

@@ -108,7 +108,7 @@
             <select class="custom-select ${(opnError??)?string('is-invalid', '')}"
                     name="opn" id="inputGroupSelect01">
                 <#list opnList as obOpn>
-                    <option value="${obOpn.id}">${obOpn.opn}</option>
+                    <option value="${obOpn.id}" <#if client??><#if client.opn == obOpn.id>selected</#if></#if>>${obOpn.opn}</option>
                 </#list>
             </select>
             <#if opnError??>
@@ -148,8 +148,8 @@
 
         <label class="col-sm-2 col-form-label">Вес, г :</label>
         <div class="col-sm-3">
-            <input type="number" step="0" name="weight1"
-                   value="<#if weight1??>${weight1}</#if>"
+            <input type="number" step="0" name="weight"
+                   value="<#if weight??>${weight}</#if>"
                    class="form-control small ${(weightError??)?string('is-invalid', '')}"
                    placeholder="Вес"/>
             <#if weightError??>
@@ -164,8 +164,8 @@
         <label class="col-sm-2 col-form-label">Пол :</label>
         <div class="col-sm-3">
             <select class="custom-select" name="sex" id="inputGroupSelect01">
-                <option value="male" <#if sex??><#if sex == 'male'>selected</#if></#if>>Муж</option>
-                <option value="female" <#if sex??><#if sex == 'female'>selected</#if></#if>>Жен</option>
+                <option value="male" <#if client??><#if client.sex == "male">selected</#if></#if>>Муж</option>
+                <option value="female" <#if client??><#if client.sex == "female">selected</#if></#if>>Жен</option>
             </select>
         </div>
     </div>

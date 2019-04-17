@@ -46,7 +46,7 @@ public class TRIPSService implements MedScale {
             return 18;
         }
 
-        if (balls <= 39){
+        if (balls >= 39){
             return 27;
         }
         return 0;

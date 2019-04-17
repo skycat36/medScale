@@ -62,7 +62,7 @@ public class ClientController {
             @RequestParam String dateOfArrival,
             @RequestParam(defaultValue = "") String opn,
             @RequestParam String gestation,
-            @RequestParam String weight1,
+            @RequestParam String weight,
             @RequestParam String sex,
             Model model
     ) {
@@ -72,62 +72,69 @@ public class ClientController {
         if (fam.equals("")) {
             clientError.put("famError", "Поле фамилия не может быть пустым.");
             client.setFam(null);
+        }else{
+            client.setFam(fam);
         }
 
         if (name.equals("")) {
             clientError.put("nameError", "Поле имя не может быть пустым.");
             client.setName(null);
+        }else{
+            client.setName(name);
         }
 
         if (secName.equals("")) {
             clientError.put("secNameError", "Поле отчество не может быть пустым.");
             client.setSecName(null);
+        }else{
+            client.setSecName(secName);
         }
 
         if (gestation.equals("")) {
             clientError.put("gestationError", "Поле гестация не может быть пустым.");
-            client.setFam(null);
+            client.setGestation(null);
+        }else{
+            client.setGestation(Integer.parseInt(gestation));
         }
 
-        if (weight1.equals("")) {
+        if (weight.equals("")) {
             clientError.put("weightError", "Поле вес не может быть пустым.");
-            client.setFam(null);
+            client.setWeight(null);
+        }else{
+            model.addAttribute("weight", weight);
+            client.setWeight(Integer.parseInt(weight));
         }
 
         if(opn.equals("")){
             clientError.put("opnError", "ОПН не может быть пустым.");
             client.setOpn(null);
+        }else{
+            client.setOpn(opnRepository.findById(Long.parseLong(opn)).get().getId());
         }
 
         if (birthdate.equals("")) {
             clientError.put("birthdateError", "Поле даты рождения не может быть пустым.");
             client.setBirthdate(null);
+        }else{
+            client.setBirthdate(LocalDate.parse(birthdate));
         }
 
         if (dateOfArrival.equals("")) {
             clientError.put("dateOfArrivalError", "Поле даты прибытия не может быть пустым.");
             client.setDateOfArrival(null);
+        }else{
+            client.setDateOfArrival(LocalDate.parse(dateOfArrival));
         }
+
+        client.setSex(sex);
 
         if (clientError.size() > 0) {
             model.addAttribute("opnList", opnRepository.findAll());
-            model.addAttribute("sex", sex);
             model.mergeAttributes(clientError);
             model.addAttribute("client", client);
             return "/page/for_client/createClient";
         }
 
-        client.setFam(fam);
-        client.setName(name);
-        client.setSecName(secName);
-        client.setBirthdate(LocalDate.parse(birthdate));
-        client.setDateOfArrival(LocalDate.parse(dateOfArrival));
-        client.setGestation(Integer.parseInt(gestation));
-        client.setWeight(Integer.parseInt(weight1));
-        client.setSex(sex);
-        if (!opn.equals("")){
-            client.setOpn(opnRepository.findById(Long.parseLong(opn)).get().getId());
-        }
         Long id = clientRepository.save(client).getId();
         return "redirect:/client_list/select/" + id;
     }
@@ -196,8 +203,7 @@ public class ClientController {
         model.addAttribute("listForDeleteScheme", getListNameSchemeWhatHaveClient(client));
         model.addAttribute("mortalityRisk", this.mortalityRisk);
         model.addAttribute("opnList", opnRepository.findAll());
-        model.addAttribute("weight1",client.getWeight().toString());
-        model.addAttribute("sex", client.getSex());
+        model.addAttribute("weight",client.getWeight().toString());
         return "/page/for_client/selectedClient";
     }
 
@@ -219,7 +225,7 @@ public class ClientController {
             @RequestParam String dateOfDeath,
             @RequestParam(required = false, defaultValue = "") String opn,
             @RequestParam String gestation,
-            @RequestParam String weight1,
+            @RequestParam String weight,
             @RequestParam String sex,
             Model model
     ){
@@ -229,42 +235,61 @@ public class ClientController {
         if(fam.equals("")){
             clientError.put("famError", "Поле фамилия не может быть пустым.");
             client.setFam(null);
+        }else {
+            client.setFam(fam);
         }
 
         if(name.equals("")){
             clientError.put("nameError", "Поле имя не может быть пустым.");
             client.setName(null);
+        }else {
+            client.setName(name);
         }
 
         if(secName.equals("")){
             clientError.put("secNameError", "Поле отчество не может быть пустым.");
             client.setSecName(null);
+        }else {
+            client.setSecName(secName);
         }
 
         if(birthdate.equals("")){
             clientError.put("birthdateError", "Поле даты рождения не может быть пустым.");
             client.setBirthdate(null);
+        }else {
+            client.setBirthdate(LocalDate.parse(birthdate));
         }
 
         if(dateOfArrival.equals("")){
             clientError.put("dateOfArrivalError", "Поле даты прибытия не может быть пустым.");
             client.setDateOfArrival(null);
+        }else {
+            client.setDateOfArrival(LocalDate.parse(dateOfArrival));
         }
 
         if(opn.equals("")){
             clientError.put("opnError", "ОПН не может быть пустым.");
             client.setOpn(null);
+        }else {
+            client.setOpn(opnRepository.findById(Long.parseLong(opn)).get().getId());
         }
 
         if(gestation.equals("")){
             clientError.put("gestationError", "Поле гестация не может быть пустым.");
-            client.setFam(null);
+            client.setGestation(null);
+        }else {
+            client.setGestation(Integer.parseInt(gestation));
         }
 
-        if(weight1.equals("")){
+        if(weight.equals("")){
             clientError.put("weightError", "Поле вес не может быть пустым.");
-            client.setFam(null);
+            client.setWeight(null);
+        }else {
+            client.setWeight(Integer.parseInt(weight));
+            model.addAttribute("weight",weight);
         }
+
+        client.setSex(sex);
 
         if (clientError.size() > 0){
             model.mergeAttributes(clientError);
@@ -274,18 +299,7 @@ public class ClientController {
             model.addAttribute("mortalityRisk", this.mortalityRisk);
             model.addAttribute("opnList", opnRepository.findAll());
             model.addAttribute("client", client);
-            model.addAttribute("weight1",weight1);
-            model.addAttribute("sex", sex);
             return "/page/for_client/selectedClient";
-        }
-
-        client.setFam(fam); client.setName(name); client.setSecName(secName);
-        client.setBirthdate(LocalDate.parse(birthdate)); client.setDateOfArrival(LocalDate.parse(dateOfArrival));
-        client.setSex(sex);
-        client.setGestation(Integer.parseInt(gestation)); client.setWeight(Integer.parseInt(weight1));
-
-        if (!opn.equals("")) {
-            client.setOpn(opnRepository.findById(Long.parseLong(opn)).get().getId());
         }
 
         if (!survayDate.equals("")){

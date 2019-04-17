@@ -133,7 +133,7 @@ public class StatisticService {
             if (client.getSnapPe() != null){
                 mapSeverityOnEachScale.put("snappe",
                         setValueForListSeverityOnEachScale(mapSeverityOnEachScale.get("snappe"),
-                                sofaService.getCountProcLethalOutcome(client.getSnapPe())));
+                                snappeService.getCountProcLethalOutcome(client.getSnapPe())));
             }
 
             if (client.getPcs() != null){
@@ -171,7 +171,7 @@ public class StatisticService {
 
     private List<Integer> setValueForListSeverityOnEachScale(List<Integer> listValue, Integer value){
         for (int i = 10; i <= 100; i= i + 10){
-            if ((value - i) >= 0 && (value - i) < 10){
+            if ((i - value) >= 0 && (i - value) < 10){
                 listValue.set(i / 10 - 1, listValue.get(i / 10 - 1) + 1);
             }
         }
