@@ -18,8 +18,8 @@ import java.util.Map;
 @Controller
 public class MainController {
 
-    @Value("${upload.path}")
-    private String uploadPath;
+    //@Value("${upload.path}")
+    //private String uploadPath;
 
     @Autowired
     private ClientRepository clientRepository;

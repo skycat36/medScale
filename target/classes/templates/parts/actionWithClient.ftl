@@ -217,7 +217,7 @@
             <tr>
                 <th scope="col">Название шкалы</th>
                 <th scope="col">Количество балов</th>
-                <th scope="col">Риск смрти</th>
+                <th scope="col">Риск смерти</th>
             </tr>
             </thead>
             <tbody>
