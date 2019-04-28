@@ -5,6 +5,8 @@ import com.takeHospital.domain.parametrsForScheme.ParamScheme;
 import com.takeHospital.repository.SchemeRepository;
 import com.takeHospital.repository.WorkerRepository;
 import com.takeHospital.service.WorkerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,8 @@ import java.util.Map;
 
 @Controller
 public class WorkerController {
+
+    private Logger log = LoggerFactory.getLogger(WorkerController.class.getName());
 
     @Autowired
     private WorkerRepository workerRepository;
@@ -238,8 +242,11 @@ public class WorkerController {
             worker.setId(worker1.getId());
             model.addAttribute("user", worker);
             model.mergeAttributes(errors);
+            log.error("Profile worker not update.");
             return "/page/for_worker/editProfileWorker";
         }
+
+        log.info("Profile worker has update.");
 
         model.addAttribute("user", workerService.updateProfile(worker1, worker));
         return "redirect:/logout";
@@ -251,6 +258,7 @@ public class WorkerController {
     ){
         if (!idWorker.equals("1")) {
             workerRepository.deleteById(Long.parseLong(idWorker));
+            log.info("Profile worker with id = " + idWorker + " deleted.");
         }
         return "redirect:/logout";
     }
@@ -261,6 +269,7 @@ public class WorkerController {
     ){
         if (!idWorker.equals("1")) {
             workerRepository.deleteById(Long.parseLong(idWorker));
+            log.info("Profile worker with id = " + idWorker + " deleted.");
         }
         return "redirect:/worker_list";
     }
@@ -273,8 +282,10 @@ public class WorkerController {
     ){
         if (worker.getId() == 1) {
             model.addAttribute("user", workerRepository.findById(Long.parseLong(idWorker)).get());
+            log.info("Profile worker " + idWorker + " has changed.");
             return "/page/for_worker/changeProfileWorker";
         }else {
+            log.error("Prove admin need for this action");
             return "redirect:/";
         }
     }
@@ -309,10 +320,12 @@ public class WorkerController {
             worker.setId(worker1.getId());
             model.addAttribute("user", worker);
             model.mergeAttributes(errors);
+            log.error("Profile worker " + idWorker + " not changed.");
             return "/page/for_worker/changeProfileWorker";
         }
 
         model.addAttribute("user", workerService.updateProfile(worker1, worker));
+        log.info("Profile worker " + idWorker + " has changed.");
         return "redirect:/worker_list";
     }
 

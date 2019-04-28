@@ -5,6 +5,8 @@ import com.takeHospital.domain.Opn;
 import com.takeHospital.repository.ClientRepository;
 import com.takeHospital.repository.OpnRepository;
 import com.takeHospital.service.metodsScale.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import java.util.*;
 
 @Controller
 public class ClientController {
+
+    private Logger log = LoggerFactory.getLogger(ClientController.class.getName());
 
     private Integer mortalityRisk;
 
@@ -132,10 +136,16 @@ public class ClientController {
             model.addAttribute("opnList", opnRepository.findAll());
             model.mergeAttributes(clientError);
             model.addAttribute("client", client);
+
+            log.error("Error validation for client " + client.getId());
+
             return "/page/for_client/createClient";
         }
 
         Long id = clientRepository.save(client).getId();
+
+        log.info("Client with ID = " + id + " has added.");
+
         return "redirect:/client_list/select/" + id;
     }
 
@@ -299,6 +309,7 @@ public class ClientController {
             model.addAttribute("mortalityRisk", this.mortalityRisk);
             model.addAttribute("opnList", opnRepository.findAll());
             model.addAttribute("client", client);
+            log.error("Error validation for client " + client.getId());
             return "/page/for_client/selectedClient";
         }
 
@@ -317,6 +328,8 @@ public class ClientController {
         if (!dateOfDeath.equals("")){
             client.setDateOfDeath(LocalDate.parse(dateOfDeath));
         }
+
+        log.info("Client update with id " + client.getId());
 
         if (add_scheme != null){
             clientRepository.save(client);
@@ -345,9 +358,10 @@ public class ClientController {
         try {
             deleteClientInClientListById(Long.parseLong(idClient));
             clientRepository.deleteById(Long.parseLong(idClient));
-
+            log.info("Client with id = " + idClient + " has deleted.");
             //model.addAttribute("textError", "Дата введена некорректно");
         }catch (ConcurrentModificationException ex){
+            log.error("Client with id = " + idClient + " not deleted.");
             model.addAttribute("textError", "Пользователя в базе данных нет.");
         }
 

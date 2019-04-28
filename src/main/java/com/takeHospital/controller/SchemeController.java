@@ -4,6 +4,8 @@ import com.takeHospital.domain.Client;
 import com.takeHospital.domain.exeptions.SchemeExeption;
 import com.takeHospital.repository.ClientRepository;
 import com.takeHospital.service.metodsScale.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +18,8 @@ import java.util.Map;
 @Controller
 @RequestMapping("/client_list/select/{idClient}/add_scheme")
 public class SchemeController {
+
+    private Logger log = LoggerFactory.getLogger(SchemeController.class.getName());
 
     Client client;
 
@@ -50,6 +54,7 @@ public class SchemeController {
             crib2Service.proveGestation(client.getGestation(), client.getWeight(), client.getSex());
         } catch (SchemeExeption exeption) {
             model.addAttribute("gestationError", exeption.getMessage());
+            log.error("Error gestation");
         }
         return "/scheme/CRIB2";
     }
@@ -61,7 +66,6 @@ public class SchemeController {
             @RequestParam(defaultValue = "") String maxBE,
             @RequestParam(defaultValue = "") String temp,
             Model model
-
     ){
         Map<String, String> schemeError = new HashMap<>();
         Map<String, String> attributes = new HashMap<>();
@@ -78,6 +82,7 @@ public class SchemeController {
             crib2Service.proveGestation(client.getGestation(), client.getWeight(), client.getSex());
         }catch (SchemeExeption exeption) {
             schemeError.put("gestationError", "Вес не соответствует сроку гестации.");
+            log.error("Error gestation");
         }
 
         if (schemeError.size() > 0){
@@ -104,7 +109,6 @@ public class SchemeController {
             @PathVariable String idClient,
             @RequestParam("param[]") String[] param,
             Model model
-
     ){
         client = clientRepository.findById(Long.parseLong(idClient)).get();
 
@@ -121,7 +125,6 @@ public class SchemeController {
             @PathVariable String idClient,
             @RequestParam String result,
             Model model
-
     ){
         client = clientRepository.findById(Long.parseLong(idClient)).get();
 
@@ -137,7 +140,6 @@ public class SchemeController {
             @PathVariable String idClient,
             @RequestParam("param[]") String[] param,
             Model model
-
     ){
         client = clientRepository.findById(Long.parseLong(idClient)).get();
 
@@ -153,7 +155,6 @@ public class SchemeController {
             @PathVariable String idClient,
             @RequestParam("param[]") String[] param,
             Model model
-
     ){
         client = clientRepository.findById(Long.parseLong(idClient)).get();
 
@@ -169,7 +170,6 @@ public class SchemeController {
             @PathVariable String idClient,
             @RequestParam("param[]") String[] param,
             Model model
-
     ){
 
         client = clientRepository.findById(Long.parseLong(idClient)).get();

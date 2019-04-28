@@ -4,6 +4,8 @@ import com.takeHospital.domain.Opn;
 import com.takeHospital.domain.Worker;
 import com.takeHospital.repository.ClientRepository;
 import com.takeHospital.repository.OpnRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ import java.util.Map;
 
 @Controller
 public class OpnController {
+
+    private Logger log = LoggerFactory.getLogger(OpnController.class.getName());
+
     @Autowired
     private OpnRepository opnRepository;
 
@@ -47,6 +52,9 @@ public class OpnController {
     ){
         opnRepository.deleteById(Long.parseLong(idOpn));
         clientRepository.deleteClientsByOpn(Long.parseLong(idOpn));
+
+        log.info("Opn with id = " + idOpn + " deleted");
+
         return "redirect:/department";
     }
 
@@ -77,10 +85,16 @@ public class OpnController {
 
         if (opnError.isEmpty()) {
             opnRepository.save(new Opn(nameOpn));
+
+            log.info("Opn with name = " + nameOpn + " has created.");
+
             return "redirect:/department";
         }else {
             model.addAttribute("nameOpn", nameOpn);
             model.mergeAttributes(opnError);
+
+            log.error("Opn with name = " + nameOpn + " not created.");
+
             return "/page/for_client/createOpn";
         }
     }
@@ -119,10 +133,16 @@ public class OpnController {
             Opn opn = opnRepository.findById(Long.parseLong(idOpn)).get();
             opn.setOpn(nameOpn);
             opnRepository.save(opn);
+
+            log.info("Opn with id = " + idOpn + " has updated.");
+
             return "redirect:/department";
         }else {
             model.addAttribute("nameOpn", nameOpn);
             model.mergeAttributes(opnError);
+
+            log.error("Opn with id = " + idOpn + " not updated.");
+
             return "/page/for_client/updateOpn";
         }
     }
