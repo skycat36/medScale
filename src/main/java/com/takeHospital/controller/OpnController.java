@@ -51,7 +51,7 @@ public class OpnController {
             @PathVariable String idOpn
     ){
         opnRepository.deleteById(Long.parseLong(idOpn));
-        clientRepository.deleteClientsByOpn(Long.parseLong(idOpn));
+        clientRepository.deleteAllByOpn(Long.parseLong(idOpn));
 
         log.info("Opn with id = " + idOpn + " deleted");
 

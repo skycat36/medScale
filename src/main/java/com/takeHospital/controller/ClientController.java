@@ -49,6 +49,8 @@ public class ClientController {
 
     private List<Client> clientList = new ArrayList<>();
 
+    private List<String> opnListClient;
+
     @GetMapping("/client_list/add_client")
     public String addClient(
             Model model
@@ -189,12 +191,12 @@ public class ClientController {
             mapOpn.put(opn.getId(), opn.getOpn());
         }
 
-        List<String> opnListClient = new ArrayList<>();
+        this.opnListClient = new ArrayList<>();
         for (Client cl: this.clientList){
             opnListClient.add(mapOpn.get(cl.getOpn()));
         }
 
-        model.addAttribute("usersOpn", opnListClient);
+        model.addAttribute("usersOpn", this.opnListClient);
 
         model.addAttribute("filter", filter);
         model.addAttribute("colums", getListWithNameColums());
@@ -367,6 +369,7 @@ public class ClientController {
 
 
         model.addAttribute("users", clientList);
+        model.addAttribute("usersOpn", this.opnListClient);
         model.addAttribute("colums", getListWithNameColums());
         return "/page/for_client/clientList";
     }
@@ -379,14 +382,11 @@ public class ClientController {
     }
 
     private void deleteClientInClientListById(Long idClient){
-        Client c = null;
-        for (Client client: this.clientList) {
-            if (client.getId() == idClient){
-                c = client;
+        for (int i = 0; i < this.clientList.size(); i++) {
+            if (this.clientList.get(i).getId() == idClient){
+                this.clientList.remove(this.clientList.get(i));
+                this.opnListClient.remove(i);
             }
-        }
-        if (c != null) {
-            this.clientList.remove(c);
         }
     }
 
