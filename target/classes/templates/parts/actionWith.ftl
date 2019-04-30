@@ -21,9 +21,15 @@
                     <label class="input-group-text" for="inputGroupSelect01">Поиск</label>
                 </div>
                 <select class="custom-select" name="selectedField" id="inputGroupSelect01">
-                    <option  value="fam">по фамилии</option>
-                    <option value="opn">по отделению</option>
-                    <option value="birthdate">по дате рождения</option>
+                    <option  value="fam" <#if selectedField??>
+                                <#if selectedField == "fam">selected</#if>
+                            </#if>>по фамилии</option>
+                    <option value="opn" <#if selectedField??>
+                            <#if selectedField == "opn">selected</#if>
+                    </#if>>по отделению</option>
+                    <option value="birthdate" <#if selectedField??>
+                            <#if selectedField == "birthdate">selected</#if>
+                    </#if>>по дате рождения</option>
                 </select>
             </div>
         </div>

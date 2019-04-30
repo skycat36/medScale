@@ -161,11 +161,16 @@ public class ClientController {
             switch (selectedField){
                 case "fam": {
                     this.clientList = clientRepository.findByFam(filter);
+                    log.info("Return " + clientRepository.findByFam(filter).size() + " numbers. filter " + filter);
                     break;
                 }
                 case "opn": {
-                    Long idOpn = opnRepository.findByOpn(filter).getId();
-                    this.clientList = clientRepository.findByOpn(idOpn);
+                    Opn tempOpn = opnRepository.findByOpn(filter);
+                    if (tempOpn != null) {
+                        this.clientList = clientRepository.findByOpn(opnRepository.findByOpn(filter).getId());
+                    }else {
+                        this.clientList = new ArrayList<>();
+                    }
                     break;
                 }
                 case "birthdate": {
@@ -173,6 +178,7 @@ public class ClientController {
                         this.clientList = clientRepository.findByBirthdate(LocalDate.parse(filter));
                     }catch (DateTimeParseException ex){
                         model.addAttribute("textError", "Дата введена некорректно");
+                        this.clientList = new ArrayList<>();
                     }
                     break;
                 }
@@ -182,7 +188,7 @@ public class ClientController {
             model.addAttribute("users", this.clientList);
         } else {
             this.clientList = clientRepository.findAll();
-            model.addAttribute("users", clientRepository.findAll());
+            model.addAttribute("users", this.clientList);
         }
 
 
@@ -196,8 +202,11 @@ public class ClientController {
             opnListClient.add(mapOpn.get(cl.getOpn()));
         }
 
+        log.info("Return " + this.clientList.size() + " numbers.");
+
         model.addAttribute("usersOpn", this.opnListClient);
 
+        model.addAttribute("selectedField", selectedField);
         model.addAttribute("filter", filter);
         model.addAttribute("colums", getListWithNameColums());
         return "/page/for_client/clientList";

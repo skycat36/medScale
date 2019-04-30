@@ -35,6 +35,6 @@ public class MainController {
         if (auth != null){
             new SecurityContextLogoutHandler().logout(request, response, auth);
         }
-        return "redirect:/page/for_other/";
+        return "redirect:/login";
     }
 }

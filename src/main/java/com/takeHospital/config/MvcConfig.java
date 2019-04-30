@@ -8,15 +8,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
-    //@Value("${upload.path}")
-    //private String uploadPath; //выдергивает из настроек путь где хранятся данные
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry
-//                .addResourceHandler("/img/**")
-//                .addResourceLocations("file:/" + uploadPath + "/");
-        //сохранение изображения в папке на сервере img
         registry
                 .addResourceHandler("/static/**")   //раздает всю иеархию
                 .addResourceLocations("classpath:/static/");             //при обращении к ресурсу файлы будут искаться
