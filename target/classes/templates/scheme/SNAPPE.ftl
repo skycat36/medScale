@@ -2,7 +2,7 @@
 
 <@c.page>
 <div class="form-group row justify-content-center">
-    <h1><label class="col-ml-2 col-form-label">Схема SNAP2</label></h1>
+    <h1><label class="col-ml-2 col-form-label">Схема SNAPPE</label></h1>
 </div>
 <form method="post" action="">
     <div class="container">

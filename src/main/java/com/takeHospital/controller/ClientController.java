@@ -51,6 +51,10 @@ public class ClientController {
 
     private List<String> opnListClient;
 
+    /*
+    * Показать окно добавления клиента
+    * @param model - хранит в себе переменные для view. Список отделений.
+    */
     @GetMapping("/client_list/add_client")
     public String addClient(
             Model model
@@ -59,6 +63,11 @@ public class ClientController {
         return "/page/for_client/createClient";
     }
 
+
+    /*
+    * Обработка переметров введенных с формы и проверка на ошибки.
+    * В случае возникновении ошибки возвращает список ошибок на страницу.
+    * */
     @PostMapping("/client_list/add_client")
     public String addClient(
             @RequestParam String fam,
@@ -151,6 +160,11 @@ public class ClientController {
         return "redirect:/client_list/select/" + id;
     }
 
+    /*
+    * Поиск клиента по параметрам.
+    * @param filter - Поле по которому будет осуществлятся поиск.
+    * @param selectedField - Искомый параметр.
+    * */
     @GetMapping("/client_list")
     public String searchUsersByFam(
             @RequestParam(required = false, defaultValue = "") String filter,
@@ -161,7 +175,6 @@ public class ClientController {
             switch (selectedField){
                 case "fam": {
                     this.clientList = clientRepository.findByFam(filter);
-                    log.info("Return " + clientRepository.findByFam(filter).size() + " numbers. filter " + filter);
                     break;
                 }
                 case "opn": {
@@ -212,6 +225,9 @@ public class ClientController {
         return "/page/for_client/clientList";
     }
 
+    /*
+    * Выбрать клиента для работы с ним
+    * @param idClient - Индекс искомого клиета.*/
     @GetMapping("/client_list/select/{idClient}")
     public String selectClientForWork(
             @PathVariable String idClient,
@@ -228,6 +244,7 @@ public class ClientController {
         return "/page/for_client/selectedClient";
     }
 
+    /* Обработка данных пользователя.*/
     @PostMapping("/client_list/select/{idClient}")
     public String addSchemeClientById(
             @PathVariable String idClient,
@@ -360,6 +377,7 @@ public class ClientController {
         return "redirect:/client_list/select/" + idClient;
     }
 
+    /* Удалить клиента.*/
     @PostMapping("/client_list/delete/{idClient}")
     public String deleteByIdUser(
             @PathVariable String idClient,
@@ -383,13 +401,17 @@ public class ClientController {
         return "/page/for_client/clientList";
     }
 
-
+    /*
+    * @return - возвращает название столбцов для клтеента.
+    **/
     private List<String> getListWithNameColums(){
         return  Arrays.asList("Фамилия", "Имя", "Отчество", "Исход",
                 "Дата рождения", "Дата поступления", "Дата выписки",
                 "Дата смерти");
     }
 
+    /*Удаляет из списка временно хранящихся на сервере списка клиентов по id клиента.
+    * */
     private void deleteClientInClientListById(Long idClient){
         for (int i = 0; i < this.clientList.size(); i++) {
             if (this.clientList.get(i).getId() == idClient){
@@ -399,10 +421,14 @@ public class ClientController {
         }
     }
 
+    /*
+    * @return - возвращает список названий схем.
+    * */
     private List<String> getListNameScheme(){
         return Arrays.asList("CRIB2", "SNAPPE", "NTISS", "PCS", "TRIPS", "SOFA");
     }
 
+    /*Удаляет всю информацию о схемах клиента.*/
     private void deleteSchemeClient(Client client, String delScheme){
         if (delScheme.equals("CRIB2")) {
             client.setCrib2(null);
@@ -424,6 +450,10 @@ public class ClientController {
         }
     }
 
+    /*
+    * Расчитывает риск общей смертности и риск смертности по каждой шкале
+    * @return - возвращает список с информацией по каждой шкале, в каждом обьекте списка содержится структура
+    * с информацией по схеме в виде (название схемы, количество балов, риск смерти)*/
     private List<List<String>> getListSchemeWhatHaveClient(Client client){
         List<List<String>> listInfoAboutScheme = new ArrayList<>();
         this.mortalityRisk = 0;
@@ -486,6 +516,9 @@ public class ClientController {
         return listInfoAboutScheme;
     }
 
+    /*
+    * @return - возвращает список названий схем которые имеет клиент.
+    * */
     private List<String> getListNameSchemeWhatHaveClient(Client client){
         List<String> list = new ArrayList<>();
 
@@ -507,7 +540,6 @@ public class ClientController {
         if (client.getSofa()!=null) {
             list.add("SOFA");
         }
-
         return list;
     }
 

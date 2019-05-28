@@ -2,7 +2,7 @@
 
 <@c.page>
 <div class="form-group row justify-content-center">
-    <h1><label class="col-ml-2 col-form-label">Схема SOFA</label></h1>
+    <h1><label class="col-ml-2 col-form-label">Схема PCS</label></h1>
 </div>
 <form name="formPCS" method="post" action="">
     <div class="container">

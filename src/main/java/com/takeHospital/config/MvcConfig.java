@@ -4,10 +4,16 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
+/*
+* Класс конфигурации для проекта и раздачи файлов
+* @author Евгений Попов
+ */
 @Configuration
 public class MvcConfig implements WebMvcConfigurer {
 
+    /*
+    * Настройка раздачи статики
+     */
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry

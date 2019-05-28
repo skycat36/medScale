@@ -99,7 +99,7 @@
             <div class="col-sm-1 mr-4"><button type="submit" class="btn btn-primary ml-0">Сохранить</button></div>
             <#if (user.id == 1)>
                 <div class="form-group row">
-                    <a type="button" class="btn btn-primary ml-4" href="/edit_profile_worker/change_param_scheme">Создать отделение</a>
+                    <a type="button" class="btn btn-primary ml-4" href="/edit_profile_worker/change_param_scheme">Изменить параметры схем</a>
                 </div>
             </#if>
         <#else>
